@@ -1,1345 +1,44 @@
-```html
-<!DOCTYPE html>
-<html lang="fr">
+<div class="nav-container">
 
-<head>
+  <a href="#accueil" class="logo">
+    <img src="logo-mecv.png" alt="Logo MECV PARIS">
+  </a>
 
-  <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <ul class="nav-links">
 
-  <meta
-    name="description"
-    content="MECV PARIS — Mission Évangélique Colonne de la Vérité. Découvrez notre vision, nos réunions et notre mission."
-  >
+    <li>
+      <a href="#vision">
+        Notre vision
+      </a>
+    </li>
 
-  <title>MECV PARIS — Mission Évangélique Colonne de la Vérité</title>
+    <li>
+      <a href="#reunions">
+        Réunions
+      </a>
+    </li>
 
+    <li>
+      <a href="#soutenir">
+        Soutenir
+      </a>
+    </li>
 
-  <style>
+    <li>
+      <a href="#contact">
+        Contact
+      </a>
+    </li>
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  </ul>
 
+</div>
 
-    html {
-      scroll-behavior: smooth;
-    }
+<div class="hero-content">
 
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      color: #171717;
-      background: #ffffff;
-      line-height: 1.6;
-    }
-
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-
-    .container {
-      width: min(1120px, 90%);
-      margin: auto;
-    }
-
-
-    /* =========================
-       NAVIGATION
-    ========================= */
-
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(255,255,255,0.96);
-      border-bottom: 1px solid #eeeeee;
-    }
-
-
-    .nav-container {
-      width: min(1200px, 92%);
-      margin: auto;
-      min-height: 82px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-
-    .logo img {
-      width: 85px;
-      height: auto;
-      display: block;
-    }
-
-
-    .nav-links {
-      list-style: none;
-
-      display: flex;
-      align-items: center;
-      gap: 35px;
-    }
-
-
-    .nav-links a {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: 0.3s;
-    }
-
-
-    .nav-links a:hover {
-      opacity: 0.55;
-    }
-
-
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-      min-height: 100vh;
-      padding: 150px 20px 100px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      text-align: center;
-
-      background:
-        linear-gradient(
-          rgba(255,255,255,0.93),
-          rgba(255,255,255,0.97)
-        );
-    }
-
-
-    .hero-content {
-      max-width: 850px;
-      margin: auto;
-    }
-
-
-    .hero-logo img {
-      width: 150px;
-      max-width: 45vw;
-      margin-bottom: 30px;
-    }
-
-
-    .hero-label {
-      font-size: 13px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-
-    .hero h1 {
-      font-size: clamp(48px, 9vw, 100px);
-      line-height: 1;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      margin-bottom: 30px;
-    }
-
-
-    .hero h1 span {
-      font-weight: 300;
-    }
-
-
-    .hero p {
-      max-width: 720px;
-      margin: auto;
-      color: #555;
-      font-size: 17px;
-    }
-
-
-    .buttons {
-      margin-top: 38px;
-
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-
-    .btn {
-      display: inline-block;
-      padding: 14px 26px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      transition: 0.3s;
-    }
-
-
-    .btn-primary {
-      background: #171717;
-      color: #ffffff;
-    }
-
-
-    .btn-primary:hover {
-      background: #444;
-    }
-
-
-    .btn-outline {
-      border: 1px solid #171717;
-    }
-
-
-    .btn-outline:hover {
-      background: #171717;
-      color: #ffffff;
-    }
-
-
-    /* =========================
-       SECTIONS
-    ========================= */
-
-    section {
-      padding: 110px 0;
-    }
-
-
-    .section-title {
-      max-width: 720px;
-      margin: 0 auto 65px;
-      text-align: center;
-    }
-
-
-    .section-title small {
-      display: block;
-      margin-bottom: 12px;
-
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-
-      color: #777;
-    }
-
-
-    .section-title h2 {
-      font-size: clamp(36px, 5vw, 58px);
-      line-height: 1.1;
-      margin-bottom: 18px;
-    }
-
-
-    .section-title p {
-      color: #666;
-    }
-
-
-    /* =========================
-       VISION
-    ========================= */
-
-    .vision-grid {
-      display: grid;
-      grid-template-columns: 1.3fr 0.7fr;
-      gap: 70px;
-      align-items: center;
-    }
-
-
-    .vision-text h3 {
-      font-size: 28px;
-      margin-bottom: 25px;
-    }
-
-
-    .vision-text p {
-      margin-bottom: 22px;
-      color: #555;
-    }
-
-
-    .verse {
-      margin-top: 30px;
-      padding: 25px;
-
-      border-left: 3px solid #171717;
-
-      font-style: italic;
-      color: #555;
-    }
-
-
-    .vision-card {
-      min-height: 360px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      text-align: center;
-
-      background: #f5f5f5;
-    }
-
-
-    .cross {
-      font-size: 55px;
-      margin-bottom: 20px;
-    }
-
-
-    .vision-card h3 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-
-    .vision-card p {
-      color: #666;
-    }
-
-
-    /* =========================
-       RÉUNIONS
-    ========================= */
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
-
-
-    .service-card {
-      padding: 40px 30px;
-      border: 1px solid #e5e5e5;
-      text-align: center;
-      transition: 0.3s;
-    }
-
-
-    .service-card:hover {
-      transform: translateY(-5px);
-    }
-
-
-    .service-card .icon {
-      font-size: 35px;
-      margin-bottom: 20px;
-    }
-
-
-    .service-card h3 {
-      margin-bottom: 12px;
-      font-size: 22px;
-    }
-
-
-    .service-card p {
-      color: #666;
-    }
-
-
-    /* =========================
-       HORAIRES
-    ========================= */
-
-    .schedule-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border-top: 1px solid #ddd;
-      border-bottom: 1px solid #ddd;
-    }
-
-
-    .schedule-item {
-      padding: 35px 20px;
-      text-align: center;
-      border-right: 1px solid #ddd;
-    }
-
-
-    .schedule-item:last-child {
-      border-right: none;
-    }
-
-
-    .schedule-item span {
-      display: block;
-      margin-bottom: 8px;
-      color: #777;
-    }
-
-
-    .schedule-item strong {
-      font-size: 20px;
-    }
-
-
-    /* =========================
-       INFORMATIONS LÉGALES
-    ========================= */
-
-    .legal-list {
-      max-width: 900px;
-      margin: auto;
-      border-top: 1px solid #ddd;
-    }
-
-
-    .legal-item {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 30px;
-
-      padding: 25px 0;
-
-      border-bottom: 1px solid #ddd;
-    }
-
-
-    .legal-item strong {
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-
-    .legal-item p {
-      color: #555;
-    }
-
-
-    .legal-final {
-      margin-top: 35px;
-      padding: 30px;
-
-      background: #f5f5f5;
-
-      text-align: center;
-      color: #555;
-    }
-
-
-    /* =========================
-       CONTACT
-    ========================= */
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 25px;
-    }
-
-
-    .contact-card {
-      padding: 40px;
-      border: 1px solid #e5e5e5;
-    }
-
-
-    .contact-card h3 {
-      margin-bottom: 20px;
-      font-size: 23px;
-    }
-
-
-    .contact-card p {
-      margin-bottom: 12px;
-      color: #555;
-    }
-
-
-    .contact-card strong {
-      color: #171717;
-    }
-
-
-    /* =========================
-       SOUTENIR
-    ========================= */
-
-    .support {
-      background: #171717;
-      color: #ffffff;
-      text-align: center;
-    }
-
-
-    .support-box {
-      max-width: 700px;
-      margin: auto;
-    }
-
-
-    .support-box h2 {
-      font-size: clamp(35px, 5vw, 55px);
-      margin-bottom: 20px;
-    }
-
-
-    .support-box p {
-      color: #cccccc;
-      margin-bottom: 30px;
-    }
-
-
-    .support .btn-primary {
-      background: #ffffff;
-      color: #171717;
-    }
-
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer {
-      padding: 60px 20px;
-      text-align: center;
-      border-top: 1px solid #eeeeee;
-    }
-
-
-    .footer-logo img {
-      width: 85px;
-      margin-bottom: 20px;
-    }
-
-
-    footer p {
-      color: #777;
-      margin-bottom: 8px;
-      font-size: 14px;
-    }
-
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 800px) {
-
-      .nav-container {
-        min-height: 70px;
-      }
-
-
-      .nav-links {
-        gap: 15px;
-      }
-
-
-      .nav-links a {
-        font-size: 10px;
-      }
-
-
-      .logo img {
-        width: 65px;
-      }
-
-
-      .vision-grid {
-        grid-template-columns: 1fr;
-      }
-
-
-      .service-grid {
-        grid-template-columns: 1fr;
-      }
-
-
-      .schedule-grid {
-        grid-template-columns: 1fr;
-      }
-
-
-      .schedule-item {
-        border-right: none;
-        border-bottom: 1px solid #ddd;
-      }
-
-
-      .schedule-item:last-child {
-        border-bottom: none;
-      }
-
-
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-
-      .legal-item {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-
-    }
-
-
-    @media (max-width: 550px) {
-
-      .nav-container {
-        flex-direction: column;
-        padding: 15px 0;
-      }
-
-
-      .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-
-      .hero {
-        padding-top: 190px;
-      }
-
-
-      section {
-        padding: 80px 0;
-      }
-
-    }
-
-  </style>
-
-</head>
-
-
-<body>
-
-
-<!-- =========================
-     NAVIGATION
-========================= -->
-
-<header class="nav">
-
-  <div class="nav-container">
-
-    <a href="#accueil" class="logo">
-
-      <img
-        src="logo-mecv.png"
-        alt="Logo MECV PARIS"
-      >
-
-    </a>
-
-
-    <ul class="nav-links">
-
-      <li>
-        <a href="#vision">
-          Vision
-        </a>
-      </li>
-
-      <li>
-        <a href="#informations-legales">
-          Informations légales
-        </a>
-      </li>
-
-      <li>
-        <a href="#contact">
-          Contact
-        </a>
-      </li>
-
-      <li>
-        <a href="#soutenir">
-          Soutenir
-        </a>
-      </li>
-
-    </ul>
-
-  </div>
-
-</header>
-
-
-
-<!-- =========================
-     ACCUEIL
-========================= -->
-
-<main id="accueil">
-
-  <section class="hero">
-
-    <div class="hero-content">
-
-
-      <div class="hero-logo">
-
-        <img
-          src="logo-mecv.png"
-          alt="Logo MECV PARIS"
-        >
-
-      </div>
-
-
-      <div class="hero-label">
-        Mission Évangélique Colonne de la Vérité
-      </div>
-
-
-      <h1>
-        MECV <span>PARIS</span>
-      </h1>
-
-
-      <p>
-
-        MECV Paris est une communauté chrétienne locale appartenant
-        à une famille d’églises implantées en France, en Belgique,
-        aux Pays-Bas, en Angola et en République démocratique du Congo,
-        notamment à Kinshasa.
-
-        Notre mission est de faire connaître Jésus-Christ,
-        d’enseigner fidèlement la Parole de Dieu et d’accompagner
-        chacun dans sa marche avec Christ.
-
-      </p>
-
-
-      <div class="buttons">
-
-        <a
-          href="#vision"
-          class="btn btn-primary"
-        >
-          Découvrir notre mission
-        </a>
-
-
-        <a
-          href="#reunions"
-          class="btn btn-outline"
-        >
-          Nos réunions
-        </a>
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-
-  <!-- =========================
-       VISION
-  ========================= -->
-
-  <section id="vision">
-
-    <div class="container">
-
-
-      <div class="section-title">
-
-        <small>
-          Qui sommes-nous ?
-        </small>
-
-        <h2>
-          Notre vision
-        </h2>
-
-        <p>
-          Croire. Vivre. Témoigner.
-        </p>
-
-      </div>
-
-
-
-      <div class="vision-grid">
-
-
-        <div class="vision-text">
-
-
-          <h3>
-            Notre mission au cœur de Paris et de sa région
-          </h3>
-
-
-          <p>
-
-            Mission Évangélique Colonne de la Vérité – MECV Paris
-            est un centre de réveil, de restauration et d’édification
-            chrétienne au cœur de Paris et de sa région, contribuant
-            à l’avancement du Royaume de Dieu à travers une communauté
-            vivante, fondée sur la vérité de la Parole de Dieu.
-
-          </p>
-
-
-          <p>
-
-            Notre mission est de proclamer l’Évangile de Jésus-Christ,
-            de former et d’équiper des disciples engagés, et de contribuer
-            à l’avancement du Royaume de Dieu à travers une communauté
-            vivante, fondée sur la vérité de la Parole de Dieu.
-
-          </p>
-
-
-          <div class="verse">
-
-            « mais afin que tu saches, si je tarde, comment il faut
-            se conduire dans la maison de Dieu, qui est l'Eglise du
-            Dieu vivant, la colonne et l'appui de la vérité. »
-
-          </div>
-
-
-        </div>
-
-
-
-        <div class="vision-card">
-
-
-          <div>
-
-            <div class="cross">
-              ✝
-            </div>
-
-
-            <h3>
-              Grâce • Onction • Vérité
-            </h3>
-
-
-            <p>
-              Au cœur de notre mission.
-            </p>
-
-          </div>
-
-
-        </div>
-
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- =========================
-       RÉUNIONS
-  ========================= -->
-
-  <section id="reunions">
-
-    <div class="container">
-
-
-      <div class="section-title">
-
-        <small>
-          Venez nous rejoindre
-        </small>
-
-        <h2>
-          Nos réunions
-        </h2>
-
-        <p>
-
-          Nous vous accueillons avec joie lors de nos différents
-          temps de rassemblement.
-
-        </p>
-
-      </div>
-
-
-
-      <div class="service-grid">
-
-
-        <div class="service-card">
-
-          <div class="icon">
-            🙏
-          </div>
-
-          <h3>
-            Culte
-          </h3>
-
-          <p>
-
-            Un temps de louange, de prière et d'écoute
-            de la Parole.
-
-          </p>
-
-        </div>
-
-
-
-        <div class="service-card">
-
-          <div class="icon">
-            📖
-          </div>
-
-          <h3>
-            Enseignement
-          </h3>
-
-          <p>
-
-            Approfondir notre connaissance de la Bible
-            et grandir dans la foi.
-
-          </p>
-
-        </div>
-
-
-
-        <div class="service-card">
-
-          <div class="icon">
-            ❤️
-          </div>
-
-          <h3>
-            Communauté
-          </h3>
-
-          <p>
-
-            Un moment pour partager, encourager et construire
-            des relations fraternelles.
-
-          </p>
-
-        </div>
-
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- =========================
-       HORAIRES
-  ========================= -->
-
-  <section>
-
-    <div class="container">
-
-
-      <div class="section-title">
-
-        <small>
-          Informations
-        </small>
-
-        <h2>
-          Horaires
-        </h2>
-
-        <p>
-
-          Retrouvez ici les horaires actuellement communiqués.
-
-        </p>
-
-      </div>
-
-
-
-      <div class="schedule-grid">
-
-
-        <div class="schedule-item">
-
-          <span>
-            Dimanche
-          </span>
-
-          <strong>
-            14h00 — 17h00
-          </strong>
-
-        </div>
-
-
-
-        <div class="schedule-item">
-
-          <span>
-            Lundi
-          </span>
-
-          <strong>
-            19h00 — 19h45
-          </strong>
-
-        </div>
-
-
-
-        <div class="schedule-item">
-
-          <span>
-            Jeudi
-          </span>
-
-          <strong>
-            21h00 — 22h00
-          </strong>
-
-        </div>
-
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- =========================
-       INFORMATIONS LÉGALES
-  ========================= -->
-
-  <section id="informations-legales">
-
-    <div class="container">
-
-
-      <div class="section-title">
-
-        <small>
-          Informations
-        </small>
-
-        <h2>
-          Informations légales
-        </h2>
-
-        <p>
-
-          Découvrez les détails administratifs et juridiques de
-          l’association MECV Paris, conformément au cadre réglementaire
-          en vigueur.
-
-        </p>
-
-      </div>
-
-
-
-      <div class="legal-list">
-
-
-        <div class="legal-item">
-
-          <strong>
-            Dénomination sociale
-          </strong>
-
-          <p>
-            Centre de réveil Colonne de la vérité Paris – MECV Paris
-          </p>
-
-        </div>
-
-
-        <div class="legal-item">
-
-          <strong>
-            Organisation
-          </strong>
-
-          <p>
-            Association cultuelle régie par la loi de 1905
-          </p>
-
-        </div>
-
-
-        <div class="legal-item">
-
-          <strong>
-            Identifiant RNA
-          </strong>
-
-          <p>
-            W783014047
-          </p>
-
-        </div>
-
-
-        <div class="legal-item">
-
-          <strong>
-            Déclaration préfectorale
-          </strong>
-
-          <p>
-            Préfecture des Yvelines – 78
-          </p>
-
-        </div>
-
-
-        <div class="legal-item">
-
-          <strong>
-            Siège administratif
-          </strong>
-
-          <p>
-            63 Avenue du Maréchal Lyautey,
-            78300 Poissy, France
-          </p>
-
-        </div>
-
-
-        <div class="legal-item">
-
-          <strong>
-            Code activité (APE)
-          </strong>
-
-          <p>
-            9491Z – Activités des organisations religieuses
-          </p>
-
-        </div>
-
-
-      </div>
-
-
-      <div class="legal-final">
-
-        <strong>
-          SIREN : 106 082 803
-        </strong>
-
-        &nbsp; — &nbsp;
-
-        <strong>
-          SIRET siège : 106 082 803 00011
-        </strong>
-
-        <br><br>
-
-        Association cultuelle œuvrant pour le réveil spirituel
-        et l’édification chrétienne en France.
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-
-  <!-- =========================
-       CONTACT
-  ========================= -->
-
-  <section id="contact">
-
-    <div class="container">
-
-
-      <div class="section-title">
-
-        <small>
-          Restons en contact
-        </small>
-
-        <h2>
-          Nous contacter
-        </h2>
-
-        <p>
-
-          Une question ? Besoin d'informations ?
-          N'hésitez pas à nous contacter.
-
-        </p>
-
-      </div>
-
-
-
-      <div class="contact-grid">
-
-
-        <div class="contact-card">
-
-          <h3>
-            📍 Nous trouver
-          </h3>
-
-
-          <p>
-            <strong>MECV PARIS</strong>
-          </p>
-
-
-          <p>
-
-            63 avenue du Maréchal Lyautey<br>
-            78300 Poissy<br>
-            France
-
-          </p>
-
-        </div>
-
-
-
-        <div class="contact-card">
-
-          <h3>
-            📞 Contact
-          </h3>
-
-
-          <p>
-
-            Téléphone :
-
-            <a href="tel:+33758404038">
-
-              <strong>
-                07 58 40 40 38
-              </strong>
-
-            </a>
-
-          </p>
-
-
-          <p>
-            Mission Évangélique Colonne de la Vérité
-          </p>
-
-        </div>
-
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- =========================
-       SOUTENIR
-  ========================= -->
-
-  <section
-    id="soutenir"
-    class="support"
-  >
-
-    <div class="container">
-
-
-      <div class="support-box">
-
-
-        <h2>
-          Soutenir MECV PARIS
-        </h2>
-
-
-        <p>
-
-          Vous souhaitez soutenir la mission et contribuer à son
-          développement ? Votre soutien nous permet de poursuivre
-          notre œuvre.
-
-        </p>
-
-
-        <a
-          href="#contact"
-          class="btn btn-primary"
-        >
-          Nous contacter
-        </a>
-
-
-      </div>
-
-    </div>
-
-  </section>
-
-</main>
-
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-
-  <div class="footer-logo">
+  <div class="hero-logo">
 
     <img
       src="logo-mecv.png"
@@ -1349,20 +48,445 @@
   </div>
 
 
-  <p>
+  <div class="hero-label">
     Mission Évangélique Colonne de la Vérité
-  </p>
+  </div>
+
+
+  <h1>
+    MECV <span>PARIS</span>
+  </h1>
 
 
   <p>
-    © 2026 MECV PARIS — Tous droits réservés.
+
+    MECV Paris est une communauté chrétienne locale appartenant
+    à une famille d’églises implantées en France, en Belgique,
+    aux Pays-Bas, en Angola et en République démocratique du Congo,
+    notamment à Kinshasa.
+
+    Notre mission est de faire connaître Jésus-Christ,
+    d’enseigner fidèlement la Parole de Dieu et d’accompagner
+    chacun dans sa marche avec Christ.
+
   </p>
 
 
-</footer>
+  <div class="buttons">
+
+    <a
+      href="#vision"
+      class="btn btn-primary"
+    >
+      Découvrir notre mission
+    </a>
 
 
-</body>
+    <a
+      href="#reunions"
+      class="btn btn-outline"
+    >
+      Nos réunions
+    </a>
 
-</html>
-```
+  </div>
+
+
+</div>
+
+<div class="container">
+
+
+  <div class="section-title">
+
+    <small>
+      Qui sommes-nous ?
+    </small>
+
+    <h2>
+      Notre vision
+    </h2>
+
+    <p>
+      Croire. Vivre. Témoigner.
+    </p>
+
+  </div>
+
+
+
+  <div class="vision-grid">
+
+
+    <div class="vision-text">
+
+
+      <h3>
+        Notre mission au cœur de Paris et de sa région
+      </h3>
+
+
+      <p>
+
+        Mission Évangélique Colonne de la Vérité – MECV Paris
+        est un centre de réveil, de restauration et d’édification
+        chrétienne au cœur de Paris et de sa région, contribuant
+        à l’avancement du Royaume de Dieu à travers une communauté
+        vivante, fondée sur la vérité de la Parole de Dieu.
+
+      </p>
+
+
+      <p>
+
+        Notre mission est de proclamer l’Évangile de Jésus-Christ,
+        de former et d’équiper des disciples engagés, et de contribuer
+        à l’avancement du Royaume de Dieu à travers une communauté
+        vivante, fondée sur la vérité de la Parole de Dieu.
+
+      </p>
+
+
+      <div class="verse">
+
+        « mais afin que tu saches, si je tarde, comment il faut
+        se conduire dans la maison de Dieu, qui est l'Eglise du
+        Dieu vivant, la colonne et l'appui de la vérité. »
+
+      </div>
+
+
+    </div>
+
+
+
+    <div class="vision-card">
+
+
+      <div>
+
+        <div class="cross">
+          ✝
+        </div>
+
+
+        <h3>
+          Grâce • Onction • Vérité
+        </h3>
+
+
+        <p>
+          Au cœur de notre mission.
+        </p>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+</div>
+
+<div class="container">
+
+
+  <div class="section-title">
+
+    <small>
+      Venez nous rejoindre
+    </small>
+
+    <h2>
+      Nos réunions
+    </h2>
+
+    <p>
+
+      Nous vous accueillons avec joie lors de nos différents
+      temps de rassemblement.
+
+    </p>
+
+  </div>
+
+
+
+  <div class="service-grid">
+
+
+    <div class="service-card">
+
+      <div class="icon">
+        🙏
+      </div>
+
+      <h3>
+        Culte
+      </h3>
+
+      <p>
+
+        Un temps de louange, de prière et d'écoute
+        de la Parole.
+
+      </p>
+
+    </div>
+
+
+
+    <div class="service-card">
+
+      <div class="icon">
+        📖
+      </div>
+
+      <h3>
+        Enseignement
+      </h3>
+
+      <p>
+
+        Approfondir notre connaissance de la Bible
+        et grandir dans la foi.
+
+      </p>
+
+    </div>
+
+
+
+    <div class="service-card">
+
+      <div class="icon">
+        ❤️
+      </div>
+
+      <h3>
+        Communauté
+      </h3>
+
+      <p>
+
+        Un moment pour partager, encourager et construire
+        des relations fraternelles.
+
+      </p>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+<div class="container">
+
+
+  <div class="section-title">
+
+    <small>
+      Informations
+    </small>
+
+    <h2>
+      Horaires
+    </h2>
+
+    <p>
+
+      Retrouvez ici les horaires actuellement communiqués.
+
+    </p>
+
+  </div>
+
+
+
+  <div class="schedule-grid">
+
+
+    <div class="schedule-item">
+
+      <span>
+        Dimanche
+      </span>
+
+      <strong>
+        14h00 — 17h00
+      </strong>
+
+    </div>
+
+
+
+    <div class="schedule-item">
+
+      <span>
+        Lundi
+      </span>
+
+      <strong>
+        19h00 — 19h45
+      </strong>
+
+    </div>
+
+
+
+    <div class="schedule-item">
+
+      <span>
+        Jeudi
+      </span>
+
+      <strong>
+        21h00 — 22h00
+      </strong>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+<div class="container">
+
+
+  <div class="support-box">
+
+
+    <h2>
+      Soutenir MECV PARIS
+    </h2>
+
+
+    <p>
+
+      Vous souhaitez soutenir la mission et contribuer à son
+      développement ? Votre soutien nous permet de poursuivre
+      notre œuvre.
+
+    </p>
+
+
+    <a
+      href="#contact"
+      class="btn btn-primary"
+    >
+      Nous contacter
+    </a>
+
+
+  </div>
+
+</div>
+
+<div class="container">
+
+
+  <div class="section-title">
+
+    <small>
+      Restons en contact
+    </small>
+
+    <h2>
+      Nous contacter
+    </h2>
+
+    <p>
+
+      Une question ? Besoin d'informations ?
+      N'hésitez pas à nous contacter.
+
+    </p>
+
+  </div>
+
+
+
+  <div class="contact-grid">
+
+
+    <div class="contact-card">
+
+
+      <h3>
+        📍 Nous trouver
+      </h3>
+
+
+      <p>
+        MECV PARIS
+      </p>
+
+
+      <p>
+
+        63 avenue du Maréchal Lyautey<br>
+        78300 Poissy
+
+      </p>
+
+
+    </div>
+
+
+
+    <div class="contact-card">
+
+
+      <h3>
+        📞 Contact
+      </h3>
+
+
+      <p>
+
+        Téléphone :
+
+        <a href="tel:+33758404038">
+
+          <strong>
+            07 58 40 40 38
+          </strong>
+
+        </a>
+
+      </p>
+
+
+      <p>
+        Mission Évangélique Colonne de la Vérité
+      </p>
+
+
+    </div>
+
+
+  </div>
+
+</div>
+
+<div class="footer-logo">
+
+  <img
+    src="logo-mecv.png"
+    alt="Logo MECV PARIS"
+  >
+
+</div>
+
+
+<p>
+  Mission Évangélique Colonne de la Vérité
+</p>
+
+
+<p>
+  © 2026 MECV PARIS — Tous droits réservés.
+</p>  CA C4EST LE CODE ORIGINAL
