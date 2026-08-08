@@ -205,23 +205,6 @@
     }
 
 
-    .hero-logo {
-      display: flex;
-      justify-content: center;
-
-      margin-bottom: 25px;
-
-      animation: heroLogo 1.5s ease both;
-    }
-
-
-    .hero-logo img {
-      width: 150px;
-      height: 150px;
-      object-fit: contain;
-    }
-
-
     .hero-label {
       margin-bottom: 15px;
 
@@ -990,21 +973,6 @@
     }
 
 
-    @keyframes heroLogo {
-
-      from {
-        opacity: 0;
-        transform: scale(0.75);
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-
-    }
-
-
     @keyframes fadeDown {
 
       from {
@@ -1083,12 +1051,6 @@
       .hero-content {
         width: 100%;
         max-width: 100%;
-      }
-
-
-      .hero-logo img {
-        width: 115px;
-        height: 115px;
       }
 
 
@@ -1214,12 +1176,6 @@
       }
 
 
-      .hero-logo img {
-        width: 105px;
-        height: 105px;
-      }
-
-
       .section-title h2 {
         font-size: 34px;
       }
@@ -1289,16 +1245,6 @@
   <section id="accueil">
 
     <div class="hero-content">
-
-
-      <div class="hero-logo">
-
-        <img
-          src="logo-mecv.png"
-          alt="Logo MECV PARIS"
-        >
-
-      </div>
 
 
       <div class="hero-label">
@@ -1722,6 +1668,7 @@
           </strong>
 
           <p>
+
             <a
               class="address-link"
               href="https://www.google.com/maps/search/?api=1&query=63+Avenue+du+Mar%C3%A9chal+Lyautey%2C+78300+Poissy%2C+France"
@@ -1731,6 +1678,7 @@
               63 Avenue du Maréchal Lyautey,
               78300 Poissy, France
             </a>
+
           </p>
 
         </div>
@@ -1902,8 +1850,6 @@
         </p>
 
 
-        <!-- Ouvre directement l'application Mail -->
-
         <a
           href="mailto:mecvparis@gmail.com"
           class="btn btn-primary"
@@ -1956,10 +1902,6 @@
     /*
       =====================================================
       RETOUR AUTOMATIQUE EN HAUT AU CHARGEMENT
-
-      Même si l'URL contient un ancien #contact,
-      #informations-legales, etc., la page commence toujours
-      sur l'accueil.
       =====================================================
     */
 
@@ -1981,12 +1923,6 @@
     /*
       =====================================================
       ANIMATIONS AU DÉFILEMENT
-
-      Les animations se déclenchent lorsqu'un élément entre
-      dans l'écran.
-
-      Elles fonctionnent dans les deux sens :
-      en descendant ET en remontant.
       =====================================================
     */
 
@@ -2008,12 +1944,6 @@
               entry.target.classList.add("visible");
 
             } else {
-
-              /*
-                On retire la classe lorsqu'on ressort
-                de la zone afin que l'animation puisse
-                recommencer lorsqu'on remonte.
-              */
 
               entry.target.classList.remove("visible");
 
@@ -2041,9 +1971,6 @@
     /*
       =====================================================
       CORRECTION DU SCROLL APRÈS UN CLIC
-
-      Lorsque l'utilisateur clique sur un lien interne,
-      le navigateur se positionne normalement sur la section.
       =====================================================
     */
 
