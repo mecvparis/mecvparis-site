@@ -53,6 +53,7 @@
     }
 
 
+
     /* =====================================================
        NAVIGATION
        ===================================================== */
@@ -190,23 +191,21 @@
 
       position: relative;
 
-      background:
+      background-image:
         linear-gradient(
-          rgba(245, 239, 227, 0.32),
-          rgba(245, 239, 227, 0.38)
+          rgba(245, 239, 227, 0.28),
+          rgba(245, 239, 227, 0.28)
         ),
         url("Christvie.png");
 
       background-size: cover;
-      background-position: center center;
+      background-position: center;
       background-repeat: no-repeat;
     }
 
 
-    /*
-      Léger voile supplémentaire pour assurer
-      la lisibilité des textes sans cacher l'image.
-    */
+    /* Voile léger pour garder l'image visible
+       tout en améliorant la lecture */
 
     #accueil::before {
       content: "";
@@ -216,10 +215,10 @@
 
       background:
         linear-gradient(
-          90deg,
-          rgba(255, 250, 241, 0.18),
-          rgba(255, 250, 241, 0.08),
-          rgba(255, 250, 241, 0.18)
+          135deg,
+          rgba(245, 239, 227, 0.32),
+          rgba(255, 250, 241, 0.12),
+          rgba(23, 52, 93, 0.10)
         );
 
       pointer-events: none;
@@ -230,18 +229,42 @@
       position: relative;
       z-index: 2;
 
-      max-width: 900px;
+      width: 100%;
+      max-width: 920px;
+
       margin: 0 auto;
 
-      padding: 25px;
+      padding: 55px 60px;
+
+      /* GLASSMORPHISM */
+
+      background:
+        rgba(255, 250, 241, 0.70);
+
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+
+      border:
+        1px solid rgba(255, 255, 255, 0.65);
+
+      border-top:
+        1px solid rgba(184, 148, 82, 0.45);
+
+      border-bottom:
+        1px solid rgba(184, 148, 82, 0.30);
+
+      border-radius: 18px;
+
+      box-shadow:
+        0 25px 70px rgba(23, 52, 93, 0.18),
+        0 8px 25px rgba(184, 148, 82, 0.08);
     }
 
 
-    /*
-      Le logo central a été supprimé.
-      Le logo MECV reste uniquement dans la navigation.
-    */
 
+    /* =====================================================
+       HERO
+       ===================================================== */
 
     .hero-label {
       margin-bottom: 15px;
@@ -260,9 +283,6 @@
       text-transform: uppercase;
 
       animation: fadeDown 1.4s ease 0.2s both;
-
-      text-shadow:
-        0 2px 12px rgba(255, 250, 241, 0.9);
     }
 
 
@@ -276,10 +296,10 @@
 
       letter-spacing: 4px;
 
-      animation: fadeUp 1.5s ease 0.35s both;
-
       text-shadow:
-        0 3px 18px rgba(255, 250, 241, 0.85);
+        0 2px 8px rgba(255, 255, 255, 0.35);
+
+      animation: fadeUp 1.5s ease 0.35s both;
     }
 
 
@@ -302,10 +322,10 @@
       font-size: 16px;
       line-height: 1.9;
 
-      animation: fadeUp 1.5s ease 0.55s both;
-
       text-shadow:
-        0 2px 12px rgba(255, 250, 241, 0.95);
+        0 1px 4px rgba(255, 255, 255, 0.25);
+
+      animation: fadeUp 1.5s ease 0.55s both;
     }
 
 
@@ -372,9 +392,7 @@
     .btn-outline {
       border: 1px solid #b89452;
       color: #17345d;
-      background: rgba(255, 250, 241, 0.55);
-
-      backdrop-filter: blur(3px);
+      background: rgba(255, 250, 241, 0.35);
     }
 
 
@@ -1104,7 +1122,16 @@
         width: 100%;
         max-width: 100%;
 
-        padding: 15px;
+        padding:
+          42px 24px;
+
+        border-radius: 15px;
+
+        background:
+          rgba(255, 250, 241, 0.76);
+
+        backdrop-filter: blur(9px);
+        -webkit-backdrop-filter: blur(9px);
       }
 
 
@@ -1222,6 +1249,12 @@
 
       .nav-links a {
         font-size: 9px;
+      }
+
+
+      .hero-content {
+        padding:
+          38px 20px;
       }
 
 
