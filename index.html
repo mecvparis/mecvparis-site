@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -18,875 +17,304 @@
 
   <title>MECV PARIS — Mission Évangélique Colonne de la Vérité</title>
 
+
   <style>
 
-    /* =====================================================
-       DESIGN MECV PARIS
-       ===================================================== */
+    /* =========================================================
+       ANIMATIONS
+       ========================================================= */
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Georgia, "Times New Roman", serif;
-      background: #0b0b0b;
-      color: #f5f1e8;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      width: min(1120px, 90%);
-      margin: auto;
-    }
-
-
-    /* =====================================================
-       NAVIGATION
-       ===================================================== */
-
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(11, 11, 11, 0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.18);
-    }
-
-    nav {
-      width: min(1120px, 90%);
-      margin: auto;
-      min-height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    .logo img {
-      width: 70px;
-      height: auto;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: #f5f1e8;
-      font-size: 15px;
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(55px);
       transition:
-        transform 0.35s ease,
-        color 0.35s ease,
-        opacity 0.35s ease;
-      display: inline-block;
+        opacity 1.4s ease,
+        transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .nav-links a:hover {
-      transform: scale(1.08);
-      color: #d4af37;
+    .animate-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
 
-    /* =====================================================
-       HERO
-       ===================================================== */
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 130px 20px 80px;
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(212, 175, 55, 0.09),
-          transparent 55%
-        ),
-        #0b0b0b;
-    }
-
-    .hero-content {
-      width: min(900px, 100%);
-      margin: auto;
-    }
-
-    .hero-logo {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 25px;
-    }
-
-    .hero-logo img {
-      width: 145px;
-      height: auto;
-    }
-
-    .hero-label {
-      color: #d4af37;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 13px;
-      margin-bottom: 18px;
-    }
-
-    .hero h1 {
-      font-size: clamp(55px, 9vw, 110px);
-      line-height: 1;
-      letter-spacing: 5px;
-      margin-bottom: 30px;
-    }
-
-    .hero h1 span {
-      color: #d4af37;
-    }
-
-    .hero p {
-      max-width: 800px;
-      margin: auto;
-      color: #d8d3c8;
-      font-size: 17px;
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-top: 35px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 13px 25px;
-      border-radius: 3px;
+    .animate-fade {
+      opacity: 0;
       transition:
-        transform 0.3s ease,
-        background 0.3s ease,
-        color 0.3s ease;
+        opacity 1.6s ease;
     }
 
-    .btn:hover {
-      transform: scale(1.04);
-    }
-
-    .btn-primary {
-      background: #d4af37;
-      color: #111;
-    }
-
-    .btn-primary:hover {
-      background: #e4c354;
-    }
-
-    .btn-outline {
-      border: 1px solid #d4af37;
-      color: #d4af37;
-    }
-
-    .btn-outline:hover {
-      background: #d4af37;
-      color: #111;
+    .animate-fade.is-visible {
+      opacity: 1;
     }
 
 
-    /* =====================================================
-       SECTIONS
-       ===================================================== */
-
-    section {
-      padding: 110px 0;
-      border-top: 1px solid rgba(212, 175, 55, 0.12);
-    }
-
-    .section-title {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 65px;
-    }
+    /* Animation progressive des titres */
 
     .section-title small {
-      display: block;
-      color: #d4af37;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 12px;
-      margin-bottom: 10px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition:
+        opacity 1.1s ease,
+        transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+      transition-delay: 0.1s;
     }
 
     .section-title h2 {
-      font-size: clamp(35px, 5vw, 55px);
-      line-height: 1.2;
-      margin-bottom: 12px;
-    }
-
-    .section-title p {
-      color: #c9c3b7;
-    }
-
-
-    /* =====================================================
-       VISION
-       ===================================================== */
-
-    .vision-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 0.8fr;
-      gap: 60px;
-      align-items: stretch;
-    }
-
-    .vision-text h3 {
-      color: #d4af37;
-      font-size: 25px;
-      margin-bottom: 22px;
-    }
-
-    .vision-text p {
-      color: #d8d3c8;
-      margin-bottom: 22px;
-    }
-
-    .verse {
-      border-left: 2px solid #d4af37;
-      padding: 20px 25px;
-      color: #cfc8ba;
-      font-style: italic;
-      margin-top: 30px;
-      background: rgba(212, 175, 55, 0.035);
-    }
-
-    .vision-card {
-      min-height: 330px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border: 1px solid rgba(212, 175, 55, 0.35);
-      background:
-        radial-gradient(
-          circle,
-          rgba(212, 175, 55, 0.10),
-          transparent 70%
-        );
-      padding: 40px;
-    }
-
-    .cross {
-      font-size: 60px;
-      color: #d4af37;
-      margin-bottom: 20px;
-    }
-
-    .vision-card h3 {
-      color: #d4af37;
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    .vision-card p {
-      color: #bdb6a9;
-    }
-
-
-    /* =====================================================
-       RÉUNIONS
-       ===================================================== */
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
-
-    .service-card {
-      text-align: center;
-      padding: 45px 30px;
-      border: 1px solid rgba(212, 175, 55, 0.22);
-      background: rgba(255, 255, 255, 0.018);
-      transition:
-        transform 0.35s ease,
-        border-color 0.35s ease;
-    }
-
-    .service-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(212, 175, 55, 0.55);
-    }
-
-    .icon {
-      font-size: 38px;
-      margin-bottom: 18px;
-    }
-
-    .service-card h3 {
-      color: #d4af37;
-      margin-bottom: 12px;
-      font-size: 23px;
-    }
-
-    .service-card p {
-      color: #c9c3b7;
-    }
-
-
-    /* =====================================================
-       HORAIRES
-       ===================================================== */
-
-    .schedule-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .schedule-item {
-      text-align: center;
-      padding: 30px 20px;
-      border: 1px solid rgba(212, 175, 55, 0.22);
-    }
-
-    .schedule-item span {
-      display: block;
-      color: #c5beb1;
-      margin-bottom: 8px;
-    }
-
-    .schedule-item strong {
-      color: #d4af37;
-      font-size: 21px;
-    }
-
-
-    /* =====================================================
-       INFORMATIONS LÉGALES
-       ===================================================== */
-
-    .legal-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-
-    .legal-item {
-      padding: 25px;
-      border: 1px solid rgba(212, 175, 55, 0.20);
-    }
-
-    .legal-item strong {
-      display: block;
-      color: #d4af37;
-      margin-bottom: 8px;
-    }
-
-    .legal-item p {
-      color: #c9c3b7;
-    }
-
-    .legal-final {
-      margin-top: 30px;
-      padding: 30px;
-      text-align: center;
-      border-top: 1px solid rgba(212, 175, 55, 0.25);
-      color: #c9c3b7;
-    }
-
-    .legal-final strong {
-      color: #d4af37;
-    }
-
-
-    /* =====================================================
-       CONTACT
-       ===================================================== */
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 25px;
-    }
-
-    .contact-card {
-      padding: 35px;
-      border: 1px solid rgba(212, 175, 55, 0.22);
-    }
-
-    .contact-card h3 {
-      color: #d4af37;
-      margin-bottom: 20px;
-      font-size: 23px;
-    }
-
-    .contact-card p {
-      color: #c9c3b7;
-      margin-bottom: 10px;
-    }
-
-    .contact-card a {
-      color: #d4af37;
-    }
-
-
-    /* =====================================================
-       SOUTENIR
-       ===================================================== */
-
-    .support-box {
-      text-align: center;
-      max-width: 850px;
-      margin: auto;
-      padding: 70px 30px;
-      border: 1px solid rgba(212, 175, 55, 0.30);
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(212, 175, 55, 0.09),
-          transparent 65%
-        );
-    }
-
-    .support-box h2 {
-      font-size: clamp(35px, 5vw, 55px);
-      margin-bottom: 20px;
-    }
-
-    .support-box p {
-      color: #c9c3b7;
-      margin-bottom: 30px;
-    }
-
-
-    /* =====================================================
-       ANIMATIONS
-       ===================================================== */
-
-    .nav-links a {
-      transition:
-        transform 0.35s ease,
-        color 0.35s ease;
-    }
-
-    .nav-links a:hover {
-      transform: scale(1.08);
-    }
-
-
-    .hero-content .hero-logo,
-    .hero-content .hero-label,
-    .hero-content h1,
-    .hero-content > p,
-    .hero-content .buttons {
       opacity: 0;
-      transform: translateY(25px);
+      transform: translateY(35px);
       transition:
-        opacity 0.9s ease,
-        transform 0.9s ease;
-    }
-
-    .hero-content.mecv-hero-visible .hero-logo {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.15s;
-    }
-
-    .hero-content.mecv-hero-visible .hero-label {
-      opacity: 1;
-      transform: translateY(0);
+        opacity 1.2s ease,
+        transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
       transition-delay: 0.35s;
     }
 
-    .hero-content.mecv-hero-visible h1 {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.55s;
-    }
-
-    .hero-content.mecv-hero-visible > p {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.75s;
-    }
-
-    .hero-content.mecv-hero-visible .buttons {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.95s;
-    }
-
-
-    .section-title small,
-    .section-title h2,
     .section-title > p {
       opacity: 0;
-      transform: translateY(25px);
+      transform: translateY(30px);
       transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
+        opacity 1.2s ease,
+        transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      transition-delay: 0.6s;
     }
 
-    .section-title.mecv-visible small {
+    .section-title.is-visible small,
+    .section-title.is-visible h2,
+    .section-title.is-visible > p {
       opacity: 1;
       transform: translateY(0);
-      transition-delay: 0.10s;
-    }
-
-    .section-title.mecv-visible h2 {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.30s;
-    }
-
-    .section-title.mecv-visible > p {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.50s;
     }
 
 
-    .vision-text > h3,
+    /* =========================================================
+       NAVIGATION
+       ========================================================= */
+
+    .nav-links a {
+      transition:
+        transform 0.45s ease,
+        opacity 0.45s ease;
+    }
+
+    .nav-links a:hover {
+      transform: scale(1.12);
+    }
+
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+    .hero-content .hero-logo {
+      opacity: 0;
+      transform: translateY(35px) scale(0.96);
+      animation:
+        heroAppear 1.5s ease forwards;
+    }
+
+    .hero-content .hero-label {
+      opacity: 0;
+      transform: translateY(35px);
+      animation:
+        heroAppear 1.4s ease forwards;
+      animation-delay: 0.35s;
+    }
+
+    .hero-content h1 {
+      opacity: 0;
+      transform: translateY(40px);
+      animation:
+        heroAppear 1.5s ease forwards;
+      animation-delay: 0.7s;
+    }
+
+    .hero-content > p {
+      opacity: 0;
+      transform: translateY(35px);
+      animation:
+        heroAppear 1.7s ease forwards;
+      animation-delay: 1s;
+    }
+
+    .hero-content .buttons {
+      opacity: 0;
+      transform: translateY(30px);
+      animation:
+        heroAppear 1.4s ease forwards;
+      animation-delay: 1.35s;
+    }
+
+    @keyframes heroAppear {
+
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+
+    /* =========================================================
+       CONTENU PROGRESSIF
+       ========================================================= */
+
+    .vision-text h3,
     .vision-text > p,
     .vision-text .verse,
     .vision-card {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(45px);
       transition:
-        opacity 0.85s ease,
-        transform 0.85s ease;
+        opacity 1.3s ease,
+        transform 1.3s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .vision-grid.mecv-visible .vision-text > h3 {
+    .vision-grid.is-visible .vision-text h3 {
       opacity: 1;
       transform: translateY(0);
       transition-delay: 0.15s;
     }
 
-    .vision-grid.mecv-visible .vision-text > p:nth-of-type(1) {
+    .vision-grid.is-visible .vision-text > p:nth-of-type(1) {
       opacity: 1;
       transform: translateY(0);
-      transition-delay: 0.35s;
+      transition-delay: 0.45s;
     }
 
-    .vision-grid.mecv-visible .vision-text > p:nth-of-type(2) {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.55s;
-    }
-
-    .vision-grid.mecv-visible .vision-text .verse {
+    .vision-grid.is-visible .vision-text > p:nth-of-type(2) {
       opacity: 1;
       transform: translateY(0);
       transition-delay: 0.75s;
     }
 
-    .vision-grid.mecv-visible .vision-card {
+    .vision-grid.is-visible .vision-text .verse {
       opacity: 1;
       transform: translateY(0);
-      transition-delay: 0.95s;
+      transition-delay: 1.05s;
     }
 
-
-    .service-card {
-      opacity: 0;
-      transform: translateY(30px);
-      transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
-    }
-
-    .service-grid.mecv-visible .service-card:nth-child(1) {
+    .vision-grid.is-visible .vision-card {
       opacity: 1;
       transform: translateY(0);
-      transition-delay: 0.15s;
-    }
-
-    .service-grid.mecv-visible .service-card:nth-child(2) {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.35s;
-    }
-
-    .service-grid.mecv-visible .service-card:nth-child(3) {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.55s;
+      transition-delay: 0.65s;
     }
 
 
-    .schedule-item {
-      opacity: 0;
-      transform: translateY(25px);
-      transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
-    }
+    /* =========================================================
+       CARTES
+       ========================================================= */
 
-    .schedule-grid.mecv-visible .schedule-item:nth-child(1) {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.15s;
-    }
-
-    .schedule-grid.mecv-visible .schedule-item:nth-child(2) {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.35s;
-    }
-
-    .schedule-grid.mecv-visible .schedule-item:nth-child(3) {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.55s;
-    }
-
-
+    .service-card,
+    .schedule-item,
     .legal-item,
-    .legal-final {
-      opacity: 0;
-      transform: translateY(25px);
-      transition:
-        opacity 0.75s ease,
-        transform 0.75s ease;
-    }
-
-    .legal-list.mecv-visible .legal-item:nth-child(1) {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.10s;
-    }
-
-    .legal-list.mecv-visible .legal-item:nth-child(2) {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.25s;
-    }
-
-    .legal-list.mecv-visible .legal-item:nth-child(3) {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.40s;
-    }
-
-    .legal-list.mecv-visible .legal-item:nth-child(4) {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.55s;
-    }
-
-    .legal-list.mecv-visible .legal-item:nth-child(5) {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.70s;
-    }
-
-    .legal-list.mecv-visible .legal-item:nth-child(6) {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.85s;
-    }
-
-    .legal-final.mecv-visible {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 1s;
-    }
-
-
     .contact-card {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(45px);
       transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
+        opacity 1.25s ease,
+        transform 1.25s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .contact-grid.mecv-visible .contact-card:nth-child(1) {
+    .cards-visible .service-card:nth-child(1),
+    .cards-visible .schedule-item:nth-child(1),
+    .cards-visible .legal-item:nth-child(1),
+    .cards-visible .contact-card:nth-child(1) {
       opacity: 1;
       transform: translateY(0);
       transition-delay: 0.15s;
     }
 
-    .contact-grid.mecv-visible .contact-card:nth-child(2) {
+    .cards-visible .service-card:nth-child(2),
+    .cards-visible .schedule-item:nth-child(2),
+    .cards-visible .legal-item:nth-child(2),
+    .cards-visible .contact-card:nth-child(2) {
       opacity: 1;
       transform: translateY(0);
-      transition-delay: 0.40s;
+      transition-delay: 0.45s;
     }
 
+    .cards-visible .service-card:nth-child(3),
+    .cards-visible .schedule-item:nth-child(3),
+    .cards-visible .legal-item:nth-child(3) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.75s;
+    }
+
+    .cards-visible .legal-item:nth-child(4) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 1.05s;
+    }
+
+    .cards-visible .legal-item:nth-child(5) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 1.35s;
+    }
+
+    .cards-visible .legal-item:nth-child(6) {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 1.65s;
+    }
+
+
+    /* =========================================================
+       LEGAL FINAL
+       ========================================================= */
+
+    .legal-final {
+      opacity: 0;
+      transform: translateY(45px);
+      transition:
+        opacity 1.4s ease,
+        transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+      transition-delay: 0.3s;
+    }
+
+    .legal-final.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    /* =========================================================
+       SOUTENIR
+       ========================================================= */
 
     .support-box {
       opacity: 0;
-      transform: translateY(35px);
+      transform: translateY(55px);
       transition:
-        opacity 0.9s ease,
-        transform 0.9s ease;
+        opacity 1.5s ease,
+        transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .support-box.mecv-visible {
+    .support-box.is-visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .support-box h2,
-    .support-box p,
-    .support-box .btn {
-      opacity: 0;
-      transform: translateY(20px);
-      transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
-    }
 
-    .support-box.mecv-visible h2 {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.20s;
-    }
-
-    .support-box.mecv-visible p {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.40s;
-    }
-
-    .support-box.mecv-visible .btn {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.60s;
-    }
-
-
-    /* =====================================================
-       RESPONSIVE
-       ===================================================== */
-
-    @media (max-width: 800px) {
-
-      nav {
-        min-height: 70px;
-      }
-
-      .nav-links {
-        gap: 15px;
-      }
-
-      .nav-links a {
-        font-size: 12px;
-      }
-
-      .vision-grid,
-      .service-grid,
-      .schedule-grid,
-      .legal-list,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      section {
-        padding: 80px 0;
-      }
-
-      .hero {
-        padding-top: 110px;
-      }
-
-    }
-
-
-    @media (max-width: 520px) {
-
-      .logo img {
-        width: 55px;
-      }
-
-      .nav-links {
-        gap: 10px;
-      }
-
-      .nav-links a {
-        font-size: 10px;
-      }
-
-      .hero-logo img {
-        width: 115px;
-      }
-
-      .hero p {
-        font-size: 15px;
-      }
-
-      .buttons {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .btn {
-        text-align: center;
-      }
-
-    }
-
-
-    /* =====================================================
-       ACCESSIBILITÉ
-       ===================================================== */
+    /* =========================================================
+       RESPECT DES UTILISATEURS QUI LIMITENT LES ANIMATIONS
+       ========================================================= */
 
     @media (prefers-reduced-motion: reduce) {
 
       *,
       *::before,
       *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
-        transition: none !important;
-        animation: none !important;
-      }
-
-      .hero-content .hero-logo,
-      .hero-content .hero-label,
-      .hero-content h1,
-      .hero-content > p,
-      .hero-content .buttons,
-      .section-title small,
-      .section-title h2,
-      .section-title > p,
-      .vision-text > h3,
-      .vision-text > p,
-      .vision-text .verse,
-      .vision-card,
-      .service-card,
-      .schedule-item,
-      .legal-item,
-      .legal-final,
-      .contact-card,
-      .support-box,
-      .support-box h2,
-      .support-box p,
-      .support-box .btn {
-        opacity: 1 !important;
-        transform: none !important;
       }
 
     }
@@ -899,15 +327,18 @@
 <body>
 
 
-  <!-- =====================================================
+  <!-- =======================================================
        NAVIGATION
-       ===================================================== -->
+       ======================================================= -->
 
   <header>
 
     <nav>
 
-      <a href="#accueil" class="logo">
+      <a
+        href="#accueil"
+        class="logo"
+      >
 
         <img
           src="logo-mecv.png"
@@ -950,706 +381,860 @@
   </header>
 
 
-  <!-- =====================================================
+
+  <!-- =======================================================
        ACCUEIL
-       ===================================================== -->
+       ======================================================= -->
 
-  <main>
+  <section
+    id="accueil"
+    class="hero"
+  >
 
-    <section id="accueil" class="hero">
-
-      <div class="hero-content">
+    <div class="hero-content">
 
 
-        <div class="hero-logo">
+      <div class="hero-logo">
 
-          <img
-            src="logo-mecv.png"
-            alt="Logo MECV PARIS"
-          >
+        <img
+          src="logo-mecv.png"
+          alt="Logo MECV PARIS"
+        >
+
+      </div>
+
+
+      <div class="hero-label">
+
+        Mission Évangélique Colonne de la Vérité
+
+      </div>
+
+
+      <h1>
+
+        MECV <span>PARIS</span>
+
+      </h1>
+
+
+      <p>
+
+        MECV Paris est une communauté chrétienne locale appartenant
+        à une famille d’églises implantées en France, en Belgique,
+        aux Pays-Bas, en Angola et en République démocratique du Congo,
+        notamment à Kinshasa.
+
+        Notre mission est de faire connaître Jésus-Christ,
+        d’enseigner fidèlement la Parole de Dieu et d’accompagner
+        chacun dans sa marche avec Christ.
+
+      </p>
+
+
+      <div class="buttons">
+
+        <a
+          href="#vision"
+          class="btn btn-primary"
+        >
+          Découvrir notre mission
+        </a>
+
+
+        <a
+          href="#reunions"
+          class="btn btn-outline"
+        >
+          Nos réunions
+        </a>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       VISION
+       ======================================================= -->
+
+  <section
+    id="vision"
+    class="section"
+  >
+
+    <div class="container">
+
+
+      <div class="section-title scroll-title">
+
+        <small>
+          Qui sommes-nous ?
+        </small>
+
+        <h2>
+          Notre vision
+        </h2>
+
+        <p>
+          Croire. Vivre. Témoigner.
+        </p>
+
+      </div>
+
+
+
+      <div class="vision-grid scroll-group">
+
+
+        <div class="vision-text">
+
+
+          <h3>
+            Notre mission au cœur de Paris et de sa région
+          </h3>
+
+
+          <p>
+
+            Mission Évangélique Colonne de la Vérité – MECV Paris
+            est un centre de réveil, de restauration et d’édification
+            chrétienne au cœur de Paris et de sa région, contribuant
+            à l’avancement du Royaume de Dieu à travers une communauté
+            vivante, fondée sur la vérité de la Parole de Dieu.
+
+          </p>
+
+
+          <p>
+
+            Notre mission est de proclamer l’Évangile de Jésus-Christ,
+            de former et d’équiper des disciples engagés, et de contribuer
+            à l’avancement du Royaume de Dieu à travers une communauté
+            vivante, fondée sur la vérité de la Parole de Dieu.
+
+          </p>
+
+
+          <div class="verse">
+
+            « mais afin que tu saches, si je tarde, comment il faut
+            se conduire dans la maison de Dieu, qui est l'Eglise du
+            Dieu vivant, la colonne et l'appui de la vérité. »
+
+          </div>
+
 
         </div>
 
 
-        <div class="hero-label">
-          Mission Évangélique Colonne de la Vérité
+
+        <div class="vision-card">
+
+
+          <div>
+
+            <div class="cross">
+              ✝
+            </div>
+
+
+            <h3>
+              Grâce • Onction • Vérité
+            </h3>
+
+
+            <p>
+              Au cœur de notre mission.
+            </p>
+
+          </div>
+
+
         </div>
 
 
-        <h1>
-          MECV <span>PARIS</span>
-        </h1>
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       RÉUNIONS
+       ======================================================= -->
+
+  <section
+    id="reunions"
+    class="section"
+  >
+
+    <div class="container">
+
+
+      <div class="section-title scroll-title">
+
+        <small>
+          Venez nous rejoindre
+        </small>
+
+        <h2>
+          Nos réunions
+        </h2>
+
+        <p>
+
+          Nous vous accueillons avec joie lors de nos différents
+          temps de rassemblement.
+
+        </p>
+
+      </div>
+
+
+
+      <div class="service-grid scroll-cards">
+
+
+        <div class="service-card">
+
+          <div class="icon">
+            🙏
+          </div>
+
+          <h3>
+            Culte
+          </h3>
+
+          <p>
+
+            Un temps de louange, de prière et d'écoute
+            de la Parole.
+
+          </p>
+
+        </div>
+
+
+
+        <div class="service-card">
+
+          <div class="icon">
+            📖
+          </div>
+
+          <h3>
+            Enseignement
+          </h3>
+
+          <p>
+
+            Approfondir notre connaissance de la Bible
+            et grandir dans la foi.
+
+          </p>
+
+        </div>
+
+
+
+        <div class="service-card">
+
+          <div class="icon">
+            ❤️
+          </div>
+
+          <h3>
+            Communauté
+          </h3>
+
+          <p>
+
+            Un moment pour partager, encourager et construire
+            des relations fraternelles.
+
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       HORAIRES
+       ======================================================= -->
+
+  <section
+    id="horaires"
+    class="section"
+  >
+
+    <div class="container">
+
+
+      <div class="section-title scroll-title">
+
+        <small>
+          Informations
+        </small>
+
+        <h2>
+          Horaires
+        </h2>
+
+        <p>
+
+          Retrouvez ici les horaires actuellement communiqués.
+
+        </p>
+
+      </div>
+
+
+
+      <div class="schedule-grid scroll-cards">
+
+
+        <div class="schedule-item">
+
+          <span>
+            Dimanche
+          </span>
+
+          <strong>
+            14h00 — 17h00
+          </strong>
+
+        </div>
+
+
+
+        <div class="schedule-item">
+
+          <span>
+            Lundi
+          </span>
+
+          <strong>
+            19h00 — 19h45
+          </strong>
+
+        </div>
+
+
+
+        <div class="schedule-item">
+
+          <span>
+            Jeudi
+          </span>
+
+          <strong>
+            21h00 — 22h00
+          </strong>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       INFORMATIONS LÉGALES
+       ======================================================= -->
+
+  <section
+    id="informations-legales"
+    class="section"
+  >
+
+    <div class="container">
+
+
+      <div class="section-title scroll-title">
+
+        <small>
+          Informations
+        </small>
+
+        <h2>
+          Informations légales
+        </h2>
+
+        <p>
+
+          Découvrez les détails administratifs et juridiques de
+          l’association MECV Paris, conformément au cadre réglementaire
+          en vigueur.
+
+        </p>
+
+      </div>
+
+
+
+      <div class="legal-list scroll-cards">
+
+
+        <div class="legal-item">
+
+          <strong>
+            Dénomination sociale
+          </strong>
+
+          <p>
+            Centre de réveil Colonne de la vérité Paris – MECV Paris
+          </p>
+
+        </div>
+
+
+        <div class="legal-item">
+
+          <strong>
+            Organisation
+          </strong>
+
+          <p>
+            Association cultuelle régie par la loi de 1905
+          </p>
+
+        </div>
+
+
+        <div class="legal-item">
+
+          <strong>
+            Identifiant RNA
+          </strong>
+
+          <p>
+            W783014047
+          </p>
+
+        </div>
+
+
+        <div class="legal-item">
+
+          <strong>
+            Déclaration préfectorale
+          </strong>
+
+          <p>
+            Préfecture des Yvelines – 78
+          </p>
+
+        </div>
+
+
+        <div class="legal-item">
+
+          <strong>
+            Siège administratif
+          </strong>
+
+          <p>
+            63 Avenue du Maréchal Lyautey,
+            78300 Poissy, France
+          </p>
+
+        </div>
+
+
+        <div class="legal-item">
+
+          <strong>
+            Code activité (APE)
+          </strong>
+
+          <p>
+            9491Z – Activités des organisations religieuses
+          </p>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="legal-final scroll-element">
+
+        <strong>
+          SIREN : 106 082 803
+        </strong>
+
+        &nbsp; — &nbsp;
+
+        <strong>
+          SIRET siège : 106 082 803 00011
+        </strong>
+
+        <br><br>
+
+        Association cultuelle œuvrant pour le réveil spirituel
+        et l’édification chrétienne en France.
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       CONTACT
+       ======================================================= -->
+
+  <section
+    id="contact"
+    class="section"
+  >
+
+    <div class="container">
+
+
+      <div class="section-title scroll-title">
+
+        <small>
+          Restons en contact
+        </small>
+
+        <h2>
+          Nous contacter
+        </h2>
+
+        <p>
+
+          Une question ? Besoin d'informations ?
+          N'hésitez pas à nous contacter.
+
+        </p>
+
+      </div>
+
+
+
+      <div class="contact-grid scroll-cards">
+
+
+        <div class="contact-card">
+
+          <h3>
+            📍 Nous trouver
+          </h3>
+
+
+          <p>
+            <strong>MECV PARIS</strong>
+          </p>
+
+
+          <p>
+
+            63 avenue du Maréchal Lyautey<br>
+            78300 Poissy<br>
+            France
+
+          </p>
+
+        </div>
+
+
+
+        <div class="contact-card">
+
+          <h3>
+            📞 Contact
+          </h3>
+
+
+          <p>
+
+            Téléphone :
+
+            <a href="tel:+33758404038">
+
+              <strong>
+                07 58 40 40 38
+              </strong>
+
+            </a>
+
+          </p>
+
+
+          <p>
+            Mission Évangélique Colonne de la Vérité
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       SOUTENIR
+       ======================================================= -->
+
+  <section
+    id="soutenir"
+    class="section"
+  >
+
+    <div class="container">
+
+
+      <div class="support-box scroll-element">
+
+
+        <h2>
+          Soutenir MECV PARIS
+        </h2>
 
 
         <p>
 
-          MECV Paris est une communauté chrétienne locale appartenant
-          à une famille d’églises implantées en France, en Belgique,
-          aux Pays-Bas, en Angola et en République démocratique du Congo,
-          notamment à Kinshasa.
-
-          Notre mission est de faire connaître Jésus-Christ,
-          d’enseigner fidèlement la Parole de Dieu et d’accompagner
-          chacun dans sa marche avec Christ.
+          Vous souhaitez soutenir la mission et contribuer à son
+          développement ? Votre soutien nous permet de poursuivre
+          notre œuvre.
 
         </p>
 
 
-        <div class="buttons">
-
-          <a
-            href="#vision"
-            class="btn btn-primary"
-          >
-            Découvrir notre mission
-          </a>
-
-
-          <a
-            href="#reunions"
-            class="btn btn-outline"
-          >
-            Nos réunions
-          </a>
-
-        </div>
+        <a
+          href="#contact"
+          class="btn btn-primary"
+        >
+          Nous contacter
+        </a>
 
 
       </div>
 
-    </section>
+    </div>
 
+  </section>
 
-    <!-- =====================================================
-         VISION
-         ===================================================== -->
 
-    <section id="vision">
 
-      <div class="container">
+  <!-- =======================================================
+       LOGO
+       ======================================================= -->
 
+  <img
+    src="logo-mecv.png"
+    alt="Logo MECV PARIS"
+    style="display:none;"
+  >
 
-        <div class="section-title">
 
-          <small>
-            Qui sommes-nous ?
-          </small>
 
-          <h2>
-            Notre vision
-          </h2>
-
-          <p>
-            Croire. Vivre. Témoigner.
-          </p>
-
-        </div>
-
-
-        <div class="vision-grid">
-
-
-          <div class="vision-text">
-
-
-            <h3>
-              Notre mission au cœur de Paris et de sa région
-            </h3>
-
-
-            <p>
-
-              Mission Évangélique Colonne de la Vérité – MECV Paris
-              est un centre de réveil, de restauration et d’édification
-              chrétienne au cœur de Paris et de sa région, contribuant
-              à l’avancement du Royaume de Dieu à travers une communauté
-              vivante, fondée sur la vérité de la Parole de Dieu.
-
-            </p>
-
-
-            <p>
-
-              Notre mission est de proclamer l’Évangile de Jésus-Christ,
-              de former et d’équiper des disciples engagés, et de contribuer
-              à l’avancement du Royaume de Dieu à travers une communauté
-              vivante, fondée sur la vérité de la Parole de Dieu.
-
-            </p>
-
-
-            <div class="verse">
-
-              « mais afin que tu saches, si je tarde, comment il faut
-              se conduire dans la maison de Dieu, qui est l'Eglise du
-              Dieu vivant, la colonne et l'appui de la vérité. »
-
-            </div>
-
-
-          </div>
-
-
-          <div class="vision-card">
-
-            <div>
-
-              <div class="cross">
-                ✝
-              </div>
-
-
-              <h3>
-                Grâce • Onction • Vérité
-              </h3>
-
-
-              <p>
-                Au cœur de notre mission.
-              </p>
-
-            </div>
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         RÉUNIONS
-         ===================================================== -->
-
-    <section id="reunions">
-
-      <div class="container">
-
-
-        <div class="section-title">
-
-          <small>
-            Venez nous rejoindre
-          </small>
-
-          <h2>
-            Nos réunions
-          </h2>
-
-          <p>
-
-            Nous vous accueillons avec joie lors de nos différents
-            temps de rassemblement.
-
-          </p>
-
-        </div>
-
-
-        <div class="service-grid">
-
-
-          <div class="service-card">
-
-            <div class="icon">
-              🙏
-            </div>
-
-            <h3>
-              Culte
-            </h3>
-
-            <p>
-
-              Un temps de louange, de prière et d'écoute
-              de la Parole.
-
-            </p>
-
-          </div>
-
-
-          <div class="service-card">
-
-            <div class="icon">
-              📖
-            </div>
-
-            <h3>
-              Enseignement
-            </h3>
-
-            <p>
-
-              Approfondir notre connaissance de la Bible
-              et grandir dans la foi.
-
-            </p>
-
-          </div>
-
-
-          <div class="service-card">
-
-            <div class="icon">
-              ❤️
-            </div>
-
-            <h3>
-              Communauté
-            </h3>
-
-            <p>
-
-              Un moment pour partager, encourager et construire
-              des relations fraternelles.
-
-            </p>
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         HORAIRES
-         ===================================================== -->
-
-    <section id="horaires">
-
-      <div class="container">
-
-
-        <div class="section-title">
-
-          <small>
-            Informations
-          </small>
-
-          <h2>
-            Horaires
-          </h2>
-
-          <p>
-
-            Retrouvez ici les horaires actuellement communiqués.
-
-          </p>
-
-        </div>
-
-
-        <div class="schedule-grid">
-
-
-          <div class="schedule-item">
-
-            <span>
-              Dimanche
-            </span>
-
-            <strong>
-              14h00 — 17h00
-            </strong>
-
-          </div>
-
-
-          <div class="schedule-item">
-
-            <span>
-              Lundi
-            </span>
-
-            <strong>
-              19h00 — 19h45
-            </strong>
-
-          </div>
-
-
-          <div class="schedule-item">
-
-            <span>
-              Jeudi
-            </span>
-
-            <strong>
-              21h00 — 22h00
-            </strong>
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         INFORMATIONS LÉGALES
-         ===================================================== -->
-
-    <section id="informations-legales">
-
-      <div class="container">
-
-
-        <div class="section-title">
-
-          <small>
-            Informations
-          </small>
-
-          <h2>
-            Informations légales
-          </h2>
-
-          <p>
-
-            Découvrez les détails administratifs et juridiques de
-            l’association MECV Paris, conformément au cadre réglementaire
-            en vigueur.
-
-          </p>
-
-        </div>
-
-
-        <div class="legal-list">
-
-
-          <div class="legal-item">
-
-            <strong>
-              Dénomination sociale
-            </strong>
-
-            <p>
-              Centre de réveil Colonne de la vérité Paris – MECV Paris
-            </p>
-
-          </div>
-
-
-          <div class="legal-item">
-
-            <strong>
-              Organisation
-            </strong>
-
-            <p>
-              Association cultuelle régie par la loi de 1905
-            </p>
-
-          </div>
-
-
-          <div class="legal-item">
-
-            <strong>
-              Identifiant RNA
-            </strong>
-
-            <p>
-              W783014047
-            </p>
-
-          </div>
-
-
-          <div class="legal-item">
-
-            <strong>
-              Déclaration préfectorale
-            </strong>
-
-            <p>
-              Préfecture des Yvelines – 78
-            </p>
-
-          </div>
-
-
-          <div class="legal-item">
-
-            <strong>
-              Siège administratif
-            </strong>
-
-            <p>
-              63 Avenue du Maréchal Lyautey,
-              78300 Poissy, France
-            </p>
-
-          </div>
-
-
-          <div class="legal-item">
-
-            <strong>
-              Code activité (APE)
-            </strong>
-
-            <p>
-              9491Z – Activités des organisations religieuses
-            </p>
-
-          </div>
-
-
-        </div>
-
-
-        <div class="legal-final">
-
-          <strong>
-            SIREN : 106 082 803
-          </strong>
-
-          &nbsp; — &nbsp;
-
-          <strong>
-            SIRET siège : 106 082 803 00011
-          </strong>
-
-          <br><br>
-
-          Association cultuelle œuvrant pour le réveil spirituel
-          et l’édification chrétienne en France.
-
-        </div>
-
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         CONTACT
-         ===================================================== -->
-
-    <section id="contact">
-
-      <div class="container">
-
-
-        <div class="section-title">
-
-          <small>
-            Restons en contact
-          </small>
-
-          <h2>
-            Nous contacter
-          </h2>
-
-          <p>
-
-            Une question ? Besoin d'informations ?
-            N'hésitez pas à nous contacter.
-
-          </p>
-
-        </div>
-
-
-        <div class="contact-grid">
-
-
-          <div class="contact-card">
-
-            <h3>
-              📍 Nous trouver
-            </h3>
-
-
-            <p>
-              <strong>MECV PARIS</strong>
-            </p>
-
-
-            <p>
-
-              63 avenue du Maréchal Lyautey<br>
-              78300 Poissy<br>
-              France
-
-            </p>
-
-          </div>
-
-
-          <div class="contact-card">
-
-            <h3>
-              📞 Contact
-            </h3>
-
-
-            <p>
-
-              Téléphone :
-
-              <a href="tel:+33758404038">
-
-                <strong>
-                  07 58 40 40 38
-                </strong>
-
-              </a>
-
-            </p>
-
-
-            <p>
-              Mission Évangélique Colonne de la Vérité
-            </p>
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         SOUTENIR
-         ===================================================== -->
-
-    <section id="soutenir">
-
-      <div class="container">
-
-
-        <div class="support-box">
-
-
-          <h2>
-            Soutenir MECV PARIS
-          </h2>
-
-
-          <p>
-
-            Vous souhaitez soutenir la mission et contribuer à son
-            développement ? Votre soutien nous permet de poursuivre
-            notre œuvre.
-
-          </p>
-
-
-          <a
-            href="#contact"
-            class="btn btn-primary"
-          >
-            Nous contacter
-          </a>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- =====================================================
-       JAVASCRIPT — ANIMATIONS
-       ===================================================== -->
+  <!-- =======================================================
+       JAVASCRIPT DES ANIMATIONS
+       ======================================================= -->
 
   <script>
 
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+
+        const observerOptions = {
+          threshold: 0.18,
+          rootMargin: "0px 0px -80px 0px"
+        };
 
 
-      /* ---------------------------------------------------
-         ANIMATION DU HERO AU CHARGEMENT
-         --------------------------------------------------- */
+        const observer =
+          new IntersectionObserver(
+            function (entries) {
 
-      const hero = document.querySelector(".hero-content");
+              entries.forEach(
+                function (entry) {
 
-      if (hero) {
+                  if (entry.isIntersecting) {
 
-        setTimeout(function () {
+                    entry.target.classList.add(
+                      "is-visible"
+                    );
 
-          hero.classList.add("mecv-hero-visible");
+                  } else {
 
-        }, 150);
+                    /*
+                     * On retire la classe lorsque l'élément
+                     * quitte complètement la zone observée.
+                     *
+                     * Cela permet de rejouer l'animation
+                     * lorsqu'on remonte ou redescend.
+                     */
 
-      }
+                    entry.target.classList.remove(
+                      "is-visible"
+                    );
+
+                  }
+
+                }
+              );
+
+            },
+            observerOptions
+          );
 
 
-      /* ---------------------------------------------------
-         ÉLÉMENTS ANIMÉS AU SCROLL
-         --------------------------------------------------- */
+        /*
+         * Titres des sections
+         */
 
-      const animatedElements = document.querySelectorAll(
-        ".section-title, " +
-        ".vision-grid, " +
-        ".service-grid, " +
-        ".schedule-grid, " +
-        ".legal-list, " +
-        ".legal-final, " +
-        ".contact-grid, " +
-        ".support-box"
-      );
+        document
+          .querySelectorAll(".scroll-title")
+          .forEach(
+            function (element) {
 
-
-      /* ---------------------------------------------------
-         OBSERVER
-         --------------------------------------------------- */
-
-      const observer = new IntersectionObserver(
-
-        function (entries, observer) {
-
-          entries.forEach(function (entry) {
-
-            if (entry.isIntersecting) {
-
-              entry.target.classList.add("mecv-visible");
-
-              observer.unobserve(entry.target);
+              observer.observe(element);
 
             }
-
-          });
-
-        },
-
-        {
-          threshold: 0.15,
-          rootMargin: "0px 0px -60px 0px"
-        }
-
-      );
+          );
 
 
-      animatedElements.forEach(function (element) {
+        /*
+         * Vision
+         */
 
-        observer.observe(element);
+        document
+          .querySelectorAll(".scroll-group")
+          .forEach(
+            function (element) {
 
-      });
+              const visionObserver =
+                new IntersectionObserver(
+                  function (entries) {
+
+                    entries.forEach(
+                      function (entry) {
+
+                        if (entry.isIntersecting) {
+
+                          entry.target.classList.add(
+                            "is-visible"
+                          );
+
+                        } else {
+
+                          entry.target.classList.remove(
+                            "is-visible"
+                          );
+
+                        }
+
+                      }
+                    );
+
+                  },
+                  {
+                    threshold: 0.18,
+                    rootMargin:
+                      "0px 0px -80px 0px"
+                  }
+                );
+
+              visionObserver.observe(element);
+
+            }
+          );
 
 
-    });
+        /*
+         * Cartes
+         */
+
+        document
+          .querySelectorAll(".scroll-cards")
+          .forEach(
+            function (element) {
+
+              const cardsObserver =
+                new IntersectionObserver(
+                  function (entries) {
+
+                    entries.forEach(
+                      function (entry) {
+
+                        if (entry.isIntersecting) {
+
+                          entry.target.classList.add(
+                            "cards-visible"
+                          );
+
+                        } else {
+
+                          entry.target.classList.remove(
+                            "cards-visible"
+                          );
+
+                        }
+
+                      }
+                    );
+
+                  },
+                  {
+                    threshold: 0.15,
+                    rootMargin:
+                      "0px 0px -70px 0px"
+                  }
+                );
+
+              cardsObserver.observe(element);
+
+            }
+          );
+
+
+        /*
+         * Éléments simples :
+         * informations légales finales,
+         * bloc Soutenir, etc.
+         */
+
+        document
+          .querySelectorAll(".scroll-element")
+          .forEach(
+            function (element) {
+
+              observer.observe(element);
+
+            }
+          );
+
+      }
+    );
 
   </script>
 
@@ -1657,4 +1242,3 @@
 </body>
 
 </html>
-```
