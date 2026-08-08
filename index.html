@@ -20,63 +20,472 @@
 
   <style>
 
-    /* =========================================================
-       ANIMATIONS
-       ========================================================= */
+    /* =====================================================
+       PALETTE MECV PARIS
+       ===================================================== */
 
-    .animate-on-scroll {
-      opacity: 0;
-      transform: translateY(55px);
+    :root {
+      --blue: #0d2348;
+      --blue-light: #182f55;
+      --gold: #9b7628;
+      --gold-dark: #6b4d08;
+      --gold-light: #b18a35;
+
+      --cream: #f8f7f3;
+      --cream-dark: #f5f1e6;
+
+      --text: #4e5d73;
+      --text-light: #59677b;
+
+      --border: #d8c79f;
+      --border-light: #ddd1b4;
+
+      --white: #ffffff;
+    }
+
+
+    /* =====================================================
+       BASE
+       ===================================================== */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      background: var(--cream);
+      color: var(--text);
+
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+
+    .container {
+      width: min(1120px, 90%);
+      margin: 0 auto;
+    }
+
+
+    /* =====================================================
+       NAVIGATION
+       ===================================================== */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+
+      z-index: 1000;
+
+      background: rgba(13, 35, 72, 0.97);
+
+      border-bottom:
+        1px solid rgba(177, 138, 53, 0.35);
+
+      backdrop-filter: blur(10px);
+    }
+
+
+    nav {
+      width: min(1200px, 92%);
+      margin: auto;
+
+      min-height: 82px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 30px;
+    }
+
+
+    .logo img {
+      width: 78px;
+      height: auto;
+    }
+
+
+    .nav-links {
+      list-style: none;
+
+      display: flex;
+      align-items: center;
+
+      gap: 34px;
+    }
+
+
+    .nav-links a {
+      color: var(--white);
+
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+
       transition:
-        opacity 1.4s ease,
-        transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .animate-on-scroll.is-visible {
-      opacity: 1;
-      transform: translateY(0);
+        transform 0.65s ease,
+        color 0.5s ease;
     }
 
 
-    .animate-fade {
+    .nav-links a:hover {
+      color: var(--gold-light);
+      transform: scale(1.12);
+    }
+
+
+    /* =====================================================
+       HERO
+       ===================================================== */
+
+    .hero {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding:
+        140px 20px
+        100px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #0d2348 0%,
+          #102a52 50%,
+          #0d2348 100%
+        );
+
+      color: var(--white);
+
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    .hero::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(177, 138, 53, 0.12),
+          transparent 55%
+        );
+
+      pointer-events: none;
+    }
+
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+
+      max-width: 900px;
+      margin: auto;
+    }
+
+
+    .hero-logo {
       opacity: 0;
+      transform: translateY(45px) scale(0.94);
+
+      animation:
+        heroAppear 1.8s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        forwards;
+    }
+
+
+    .hero-logo img {
+      width: 150px;
+      margin: 0 auto 30px;
+    }
+
+
+    .hero-label {
+      opacity: 0;
+      transform: translateY(40px);
+
+      animation:
+        heroAppear 1.7s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.35s
+        forwards;
+
+      color: var(--gold-light);
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.18em;
+      font-size: 0.85rem;
+    }
+
+
+    .hero h1 {
+      opacity: 0;
+      transform: translateY(45px);
+
+      animation:
+        heroAppear 1.8s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.7s
+        forwards;
+
+      font-size:
+        clamp(3.5rem, 9vw, 7rem);
+
+      line-height: 1;
+
+      margin:
+        22px 0
+        30px;
+
+      letter-spacing: 0.04em;
+    }
+
+
+    .hero h1 span {
+      color: var(--gold-light);
+    }
+
+
+    .hero p {
+      opacity: 0;
+      transform: translateY(45px);
+
+      animation:
+        heroAppear 2s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        1s
+        forwards;
+
+      max-width: 800px;
+      margin: 0 auto;
+
+      color: rgba(255,255,255,0.88);
+
+      font-size: 1.05rem;
+    }
+
+
+    .buttons {
+      opacity: 0;
+      transform: translateY(40px);
+
+      animation:
+        heroAppear 1.7s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        1.45s
+        forwards;
+
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      gap: 18px;
+
+      margin-top: 38px;
+    }
+
+
+    @keyframes heroAppear {
+
+      from {
+        opacity: 0;
+        transform:
+          translateY(45px)
+          scale(0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform:
+          translateY(0)
+          scale(1);
+      }
+
+    }
+
+
+    /* =====================================================
+       BOUTONS
+       ===================================================== */
+
+    .btn {
+      display: inline-block;
+
+      padding:
+        13px 27px;
+
+      border-radius: 3px;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.9rem;
+
       transition:
-        opacity 1.6s ease;
+        transform 0.5s ease,
+        background 0.5s ease,
+        color 0.5s ease,
+        box-shadow 0.5s ease;
     }
 
-    .animate-fade.is-visible {
-      opacity: 1;
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--white);
     }
 
 
-    /* Animation progressive des titres */
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: scale(1.06);
+      box-shadow:
+        0 10px 25px
+        rgba(0,0,0,0.18);
+    }
+
+
+    .btn-outline {
+      border:
+        1px solid
+        var(--gold-light);
+
+      color: var(--white);
+    }
+
+
+    .btn-outline:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      transform: scale(1.06);
+    }
+
+
+    /* =====================================================
+       SECTIONS
+       ===================================================== */
+
+    section {
+      padding:
+        110px 0;
+    }
+
+
+    section:nth-of-type(even) {
+      background: var(--cream-dark);
+    }
+
+
+    .section-title {
+      text-align: center;
+      max-width: 800px;
+
+      margin:
+        0 auto 65px;
+    }
+
 
     .section-title small {
+      display: block;
+
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(35px);
+
+      color: var(--gold);
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.16em;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size: 0.75rem;
+
       transition:
-        opacity 1.1s ease,
-        transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 1.3s ease,
+        transform 1.3s
+        cubic-bezier(0.22, 1, 0.36, 1);
+
       transition-delay: 0.1s;
     }
 
+
     .section-title h2 {
       opacity: 0;
-      transform: translateY(35px);
+      transform: translateY(40px);
+
+      color: var(--blue);
+
+      font-size:
+        clamp(2.2rem, 5vw, 3.5rem);
+
+      line-height: 1.15;
+
+      margin:
+        13px 0;
+
       transition:
-        opacity 1.2s ease,
-        transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-      transition-delay: 0.35s;
+        opacity 1.5s ease,
+        transform 1.5s
+        cubic-bezier(0.22, 1, 0.36, 1);
+
+      transition-delay: 0.4s;
     }
+
 
     .section-title > p {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(35px);
+
+      color: var(--text-light);
+
       transition:
-        opacity 1.2s ease,
-        transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-      transition-delay: 0.6s;
+        opacity 1.5s ease,
+        transform 1.5s
+        cubic-bezier(0.22, 1, 0.36, 1);
+
+      transition-delay: 0.75s;
     }
+
 
     .section-title.is-visible small,
     .section-title.is-visible h2,
@@ -86,197 +495,374 @@
     }
 
 
-    /* =========================================================
-       NAVIGATION
-       ========================================================= */
+    /* =====================================================
+       VISION
+       ===================================================== */
 
-    .nav-links a {
-      transition:
-        transform 0.45s ease,
-        opacity 0.45s ease;
+    .vision-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.35fr
+        0.65fr;
+
+      gap: 65px;
+
+      align-items: stretch;
     }
 
-    .nav-links a:hover {
-      transform: scale(1.12);
-    }
-
-
-    /* =========================================================
-       HERO
-       ========================================================= */
-
-    .hero-content .hero-logo {
-      opacity: 0;
-      transform: translateY(35px) scale(0.96);
-      animation:
-        heroAppear 1.5s ease forwards;
-    }
-
-    .hero-content .hero-label {
-      opacity: 0;
-      transform: translateY(35px);
-      animation:
-        heroAppear 1.4s ease forwards;
-      animation-delay: 0.35s;
-    }
-
-    .hero-content h1 {
-      opacity: 0;
-      transform: translateY(40px);
-      animation:
-        heroAppear 1.5s ease forwards;
-      animation-delay: 0.7s;
-    }
-
-    .hero-content > p {
-      opacity: 0;
-      transform: translateY(35px);
-      animation:
-        heroAppear 1.7s ease forwards;
-      animation-delay: 1s;
-    }
-
-    .hero-content .buttons {
-      opacity: 0;
-      transform: translateY(30px);
-      animation:
-        heroAppear 1.4s ease forwards;
-      animation-delay: 1.35s;
-    }
-
-    @keyframes heroAppear {
-
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-    }
-
-
-    /* =========================================================
-       CONTENU PROGRESSIF
-       ========================================================= */
 
     .vision-text h3,
     .vision-text > p,
     .vision-text .verse,
     .vision-card {
       opacity: 0;
-      transform: translateY(45px);
+      transform: translateY(50px);
+
       transition:
-        opacity 1.3s ease,
-        transform 1.3s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 1.5s ease,
+        transform 1.5s
+        cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .vision-grid.is-visible .vision-text h3 {
+
+    .vision-grid.is-visible
+    .vision-text h3 {
       opacity: 1;
       transform: translateY(0);
+
       transition-delay: 0.15s;
     }
 
-    .vision-grid.is-visible .vision-text > p:nth-of-type(1) {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.45s;
-    }
 
-    .vision-grid.is-visible .vision-text > p:nth-of-type(2) {
+    .vision-grid.is-visible
+    .vision-text > p:nth-of-type(1) {
       opacity: 1;
       transform: translateY(0);
-      transition-delay: 0.75s;
-    }
 
-    .vision-grid.is-visible .vision-text .verse {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 1.05s;
-    }
-
-    .vision-grid.is-visible .vision-card {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.65s;
+      transition-delay: 0.5s;
     }
 
 
-    /* =========================================================
-       CARTES
-       ========================================================= */
+    .vision-grid.is-visible
+    .vision-text > p:nth-of-type(2) {
+      opacity: 1;
+      transform: translateY(0);
+
+      transition-delay: 0.9s;
+    }
+
+
+    .vision-grid.is-visible
+    .vision-text .verse {
+      opacity: 1;
+      transform: translateY(0);
+
+      transition-delay: 1.3s;
+    }
+
+
+    .vision-grid.is-visible
+    .vision-card {
+      opacity: 1;
+      transform: translateY(0);
+
+      transition-delay: 0.7s;
+    }
+
+
+    .vision-text h3 {
+      color: var(--blue);
+
+      font-size: 1.65rem;
+
+      margin-bottom: 25px;
+    }
+
+
+    .vision-text p {
+      margin-bottom: 22px;
+    }
+
+
+    .verse {
+      border-left:
+        3px solid
+        var(--gold);
+
+      padding:
+        18px 25px;
+
+      margin-top: 30px;
+
+      color: var(--blue);
+
+      font-style: italic;
+
+      background:
+        rgba(155, 118, 40, 0.06);
+    }
+
+
+    .vision-card {
+      min-height: 350px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 40px;
+
+      background: var(--blue);
+
+      border:
+        1px solid
+        var(--gold);
+
+      color: var(--white);
+
+      box-shadow:
+        0 20px 45px
+        rgba(13,35,72,0.12);
+    }
+
+
+    .cross {
+      color: var(--gold-light);
+
+      font-size: 4rem;
+
+      margin-bottom: 20px;
+    }
+
+
+    .vision-card h3 {
+      color: var(--gold-light);
+
+      font-size: 1.5rem;
+
+      margin-bottom: 12px;
+    }
+
+
+    .vision-card p {
+      color:
+        rgba(255,255,255,0.75);
+    }
+
+
+    /* =====================================================
+       CARTES RÉUNIONS
+       ===================================================== */
+
+    .service-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 28px;
+    }
+
 
     .service-card,
     .schedule-item,
     .legal-item,
     .contact-card {
       opacity: 0;
-      transform: translateY(45px);
+      transform: translateY(50px);
+
       transition:
-        opacity 1.25s ease,
-        transform 1.25s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 1.5s ease,
+        transform 1.5s
+        cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .cards-visible .service-card:nth-child(1),
-    .cards-visible .schedule-item:nth-child(1),
-    .cards-visible .legal-item:nth-child(1),
-    .cards-visible .contact-card:nth-child(1) {
+
+    .cards-visible
+    > :nth-child(1) {
       opacity: 1;
       transform: translateY(0);
+
       transition-delay: 0.15s;
     }
 
-    .cards-visible .service-card:nth-child(2),
-    .cards-visible .schedule-item:nth-child(2),
-    .cards-visible .legal-item:nth-child(2),
-    .cards-visible .contact-card:nth-child(2) {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 0.45s;
-    }
 
-    .cards-visible .service-card:nth-child(3),
-    .cards-visible .schedule-item:nth-child(3),
-    .cards-visible .legal-item:nth-child(3) {
+    .cards-visible
+    > :nth-child(2) {
       opacity: 1;
       transform: translateY(0);
-      transition-delay: 0.75s;
-    }
 
-    .cards-visible .legal-item:nth-child(4) {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 1.05s;
-    }
-
-    .cards-visible .legal-item:nth-child(5) {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 1.35s;
-    }
-
-    .cards-visible .legal-item:nth-child(6) {
-      opacity: 1;
-      transform: translateY(0);
-      transition-delay: 1.65s;
+      transition-delay: 0.55s;
     }
 
 
-    /* =========================================================
-       LEGAL FINAL
-       ========================================================= */
+    .cards-visible
+    > :nth-child(3) {
+      opacity: 1;
+      transform: translateY(0);
+
+      transition-delay: 0.95s;
+    }
+
+
+    .service-card {
+      background: var(--white);
+
+      border:
+        1px solid
+        var(--border-light);
+
+      padding: 40px 30px;
+
+      text-align: center;
+
+      transition:
+        opacity 1.5s ease,
+        transform 1.5s
+        cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.5s ease,
+        border-color 0.5s ease;
+    }
+
+
+    .service-card:hover {
+      transform: translateY(-7px);
+
+      border-color: var(--gold);
+
+      box-shadow:
+        0 18px 40px
+        rgba(13,35,72,0.10);
+    }
+
+
+    .icon {
+      font-size: 2.3rem;
+
+      margin-bottom: 18px;
+    }
+
+
+    .service-card h3 {
+      color: var(--blue);
+
+      font-size: 1.35rem;
+
+      margin-bottom: 13px;
+    }
+
+
+    /* =====================================================
+       HORAIRES
+       ===================================================== */
+
+    .schedule-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 25px;
+    }
+
+
+    .schedule-item {
+      background: var(--white);
+
+      border-top:
+        3px solid
+        var(--gold);
+
+      padding: 30px;
+
+      text-align: center;
+    }
+
+
+    .schedule-item span {
+      display: block;
+
+      color: var(--text-light);
+
+      margin-bottom: 8px;
+    }
+
+
+    .schedule-item strong {
+      color: var(--blue);
+
+      font-size: 1.35rem;
+    }
+
+
+    /* =====================================================
+       INFORMATIONS LÉGALES
+       ===================================================== */
+
+    .legal-list {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 20px;
+    }
+
+
+    .legal-item {
+      background: var(--white);
+
+      border:
+        1px solid
+        var(--border-light);
+
+      padding: 27px 30px;
+    }
+
+
+    .legal-item strong {
+      display: block;
+
+      color: var(--blue);
+
+      margin-bottom: 8px;
+    }
+
+
+    .legal-item p {
+      color: var(--text-light);
+    }
+
 
     .legal-final {
       opacity: 0;
-      transform: translateY(45px);
+      transform: translateY(50px);
+
+      margin-top: 35px;
+
+      padding: 30px;
+
+      text-align: center;
+
+      color: var(--blue);
+
+      border-top:
+        1px solid
+        var(--border);
+
+      border-bottom:
+        1px solid
+        var(--border);
+
       transition:
-        opacity 1.4s ease,
-        transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
-      transition-delay: 0.3s;
+        opacity 1.6s ease,
+        transform 1.6s
+        cubic-bezier(0.22, 1, 0.36, 1);
     }
+
 
     .legal-final.is-visible {
       opacity: 1;
@@ -284,17 +870,92 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
+       CONTACT
+       ===================================================== */
+
+    .contact-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 30px;
+    }
+
+
+    .contact-card {
+      background: var(--white);
+
+      border:
+        1px solid
+        var(--border-light);
+
+      padding: 35px;
+    }
+
+
+    .contact-card h3 {
+      color: var(--blue);
+
+      font-size: 1.35rem;
+
+      margin-bottom: 22px;
+    }
+
+
+    .contact-card p {
+      margin-bottom: 13px;
+    }
+
+
+    .contact-card a {
+      color: var(--gold-dark);
+
+      transition:
+        color 0.4s ease;
+    }
+
+
+    .contact-card a:hover {
+      color: var(--gold);
+    }
+
+
+    /* =====================================================
        SOUTENIR
-       ========================================================= */
+       ===================================================== */
+
+    #soutenir {
+      background: var(--blue);
+    }
+
 
     .support-box {
       opacity: 0;
       transform: translateY(55px);
+
+      text-align: center;
+
+      max-width: 850px;
+
+      margin: auto;
+
+      padding: 65px 35px;
+
+      border:
+        1px solid
+        rgba(177,138,53,0.55);
+
+      background:
+        rgba(255,255,255,0.025);
+
       transition:
-        opacity 1.5s ease,
-        transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 1.7s ease,
+        transform 1.7s
+        cubic-bezier(0.22, 1, 0.36, 1);
     }
+
 
     .support-box.is-visible {
       opacity: 1;
@@ -302,9 +963,117 @@
     }
 
 
-    /* =========================================================
-       RESPECT DES UTILISATEURS QUI LIMITENT LES ANIMATIONS
-       ========================================================= */
+    .support-box h2 {
+      color: var(--gold-light);
+
+      font-size:
+        clamp(2rem, 5vw, 3.2rem);
+
+      margin-bottom: 20px;
+    }
+
+
+    .support-box p {
+      color:
+        rgba(255,255,255,0.78);
+
+      max-width: 680px;
+
+      margin:
+        0 auto 30px;
+    }
+
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
+    @media (max-width: 800px) {
+
+      nav {
+        min-height: 70px;
+      }
+
+
+      .logo img {
+        width: 62px;
+      }
+
+
+      .nav-links {
+        gap: 14px;
+      }
+
+
+      .nav-links a {
+        font-size: 0.75rem;
+      }
+
+
+      .vision-grid,
+      .service-grid,
+      .schedule-grid,
+      .legal-list,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      section {
+        padding:
+          85px 0;
+      }
+
+
+      .hero {
+        padding:
+          120px 20px
+          80px;
+      }
+
+
+      .hero-logo img {
+        width: 120px;
+      }
+
+    }
+
+
+    @media (max-width: 560px) {
+
+      .nav-links {
+        gap: 9px;
+      }
+
+
+      .nav-links a {
+        font-size: 0.68rem;
+      }
+
+
+      .hero h1 {
+        font-size: 3.3rem;
+      }
+
+
+      .buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+
+      .btn {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+      }
+
+    }
+
+
+    /* =====================================================
+       ACCESSIBILITÉ
+       ===================================================== */
 
     @media (prefers-reduced-motion: reduce) {
 
@@ -327,9 +1096,9 @@
 <body>
 
 
-  <!-- =======================================================
+  <!-- =====================================================
        NAVIGATION
-       ======================================================= -->
+       ===================================================== -->
 
   <header>
 
@@ -381,10 +1150,9 @@
   </header>
 
 
-
-  <!-- =======================================================
+  <!-- =====================================================
        ACCUEIL
-       ======================================================= -->
+       ===================================================== -->
 
   <section
     id="accueil"
@@ -405,16 +1173,12 @@
 
 
       <div class="hero-label">
-
         Mission Évangélique Colonne de la Vérité
-
       </div>
 
 
       <h1>
-
         MECV <span>PARIS</span>
-
       </h1>
 
 
@@ -457,15 +1221,11 @@
   </section>
 
 
-
-  <!-- =======================================================
+  <!-- =====================================================
        VISION
-       ======================================================= -->
+       ===================================================== -->
 
-  <section
-    id="vision"
-    class="section"
-  >
+  <section id="vision">
 
     <div class="container">
 
@@ -485,7 +1245,6 @@
         </p>
 
       </div>
-
 
 
       <div class="vision-grid scroll-group">
@@ -532,9 +1291,7 @@
         </div>
 
 
-
         <div class="vision-card">
-
 
           <div>
 
@@ -554,7 +1311,6 @@
 
           </div>
 
-
         </div>
 
 
@@ -565,15 +1321,11 @@
   </section>
 
 
-
-  <!-- =======================================================
+  <!-- =====================================================
        RÉUNIONS
-       ======================================================= -->
+       ===================================================== -->
 
-  <section
-    id="reunions"
-    class="section"
-  >
+  <section id="reunions">
 
     <div class="container">
 
@@ -596,7 +1348,6 @@
         </p>
 
       </div>
-
 
 
       <div class="service-grid scroll-cards">
@@ -622,7 +1373,6 @@
         </div>
 
 
-
         <div class="service-card">
 
           <div class="icon">
@@ -641,7 +1391,6 @@
           </p>
 
         </div>
-
 
 
         <div class="service-card">
@@ -671,15 +1420,11 @@
   </section>
 
 
-
-  <!-- =======================================================
+  <!-- =====================================================
        HORAIRES
-       ======================================================= -->
+       ===================================================== -->
 
-  <section
-    id="horaires"
-    class="section"
-  >
+  <section>
 
     <div class="container">
 
@@ -695,13 +1440,10 @@
         </h2>
 
         <p>
-
           Retrouvez ici les horaires actuellement communiqués.
-
         </p>
 
       </div>
-
 
 
       <div class="schedule-grid scroll-cards">
@@ -720,7 +1462,6 @@
         </div>
 
 
-
         <div class="schedule-item">
 
           <span>
@@ -732,7 +1473,6 @@
           </strong>
 
         </div>
-
 
 
         <div class="schedule-item">
@@ -755,15 +1495,11 @@
   </section>
 
 
-
-  <!-- =======================================================
+  <!-- =====================================================
        INFORMATIONS LÉGALES
-       ======================================================= -->
+       ===================================================== -->
 
-  <section
-    id="informations-legales"
-    class="section"
-  >
+  <section id="informations-legales">
 
     <div class="container">
 
@@ -787,7 +1523,6 @@
         </p>
 
       </div>
-
 
 
       <div class="legal-list scroll-cards">
@@ -900,15 +1635,11 @@
   </section>
 
 
-
-  <!-- =======================================================
+  <!-- =====================================================
        CONTACT
-       ======================================================= -->
+       ===================================================== -->
 
-  <section
-    id="contact"
-    class="section"
-  >
+  <section id="contact">
 
     <div class="container">
 
@@ -931,7 +1662,6 @@
         </p>
 
       </div>
-
 
 
       <div class="contact-grid scroll-cards">
@@ -958,7 +1688,6 @@
           </p>
 
         </div>
-
 
 
         <div class="contact-card">
@@ -997,15 +1726,11 @@
   </section>
 
 
-
-  <!-- =======================================================
+  <!-- =====================================================
        SOUTENIR
-       ======================================================= -->
+       ===================================================== -->
 
-  <section
-    id="soutenir"
-    class="section"
-  >
+  <section id="soutenir">
 
     <div class="container">
 
@@ -1042,22 +1767,9 @@
   </section>
 
 
-
-  <!-- =======================================================
-       LOGO
-       ======================================================= -->
-
-  <img
-    src="logo-mecv.png"
-    alt="Logo MECV PARIS"
-    style="display:none;"
-  >
-
-
-
-  <!-- =======================================================
-       JAVASCRIPT DES ANIMATIONS
-       ======================================================= -->
+  <!-- =====================================================
+       JAVASCRIPT — ANIMATIONS AU DÉFILEMENT
+       ===================================================== -->
 
   <script>
 
@@ -1071,7 +1783,18 @@
         };
 
 
-        const observer =
+        /*
+         * Titres :
+         * Qui sommes-nous ?
+         * Notre vision
+         * Croire. Vivre. Témoigner.
+         *
+         * L'animation est retirée lorsque la section
+         * sort de l'écran afin qu'elle puisse rejouer
+         * lorsque l'utilisateur remonte.
+         */
+
+        const titleObserver =
           new IntersectionObserver(
             function (entries) {
 
@@ -1085,14 +1808,6 @@
                     );
 
                   } else {
-
-                    /*
-                     * On retire la classe lorsque l'élément
-                     * quitte complètement la zone observée.
-                     *
-                     * Cela permet de rejouer l'animation
-                     * lorsqu'on remonte ou redescend.
-                     */
 
                     entry.target.classList.remove(
                       "is-visible"
@@ -1108,61 +1823,58 @@
           );
 
 
-        /*
-         * Titres des sections
-         */
-
         document
           .querySelectorAll(".scroll-title")
           .forEach(
             function (element) {
 
-              observer.observe(element);
+              titleObserver.observe(element);
 
             }
           );
 
 
         /*
-         * Vision
+         * Vision :
+         * chaque élément apparaît progressivement.
          */
+
+        const visionObserver =
+          new IntersectionObserver(
+            function (entries) {
+
+              entries.forEach(
+                function (entry) {
+
+                  if (entry.isIntersecting) {
+
+                    entry.target.classList.add(
+                      "is-visible"
+                    );
+
+                  } else {
+
+                    entry.target.classList.remove(
+                      "is-visible"
+                    );
+
+                  }
+
+                }
+              );
+
+            },
+            {
+              threshold: 0.18,
+              rootMargin: "0px 0px -80px 0px"
+            }
+          );
+
 
         document
           .querySelectorAll(".scroll-group")
           .forEach(
             function (element) {
-
-              const visionObserver =
-                new IntersectionObserver(
-                  function (entries) {
-
-                    entries.forEach(
-                      function (entry) {
-
-                        if (entry.isIntersecting) {
-
-                          entry.target.classList.add(
-                            "is-visible"
-                          );
-
-                        } else {
-
-                          entry.target.classList.remove(
-                            "is-visible"
-                          );
-
-                        }
-
-                      }
-                    );
-
-                  },
-                  {
-                    threshold: 0.18,
-                    rootMargin:
-                      "0px 0px -80px 0px"
-                  }
-                );
 
               visionObserver.observe(element);
 
@@ -1171,45 +1883,46 @@
 
 
         /*
-         * Cartes
+         * Cartes :
+         * elles apparaissent une par une.
          */
+
+        const cardsObserver =
+          new IntersectionObserver(
+            function (entries) {
+
+              entries.forEach(
+                function (entry) {
+
+                  if (entry.isIntersecting) {
+
+                    entry.target.classList.add(
+                      "cards-visible"
+                    );
+
+                  } else {
+
+                    entry.target.classList.remove(
+                      "cards-visible"
+                    );
+
+                  }
+
+                }
+              );
+
+            },
+            {
+              threshold: 0.15,
+              rootMargin: "0px 0px -70px 0px"
+            }
+          );
+
 
         document
           .querySelectorAll(".scroll-cards")
           .forEach(
             function (element) {
-
-              const cardsObserver =
-                new IntersectionObserver(
-                  function (entries) {
-
-                    entries.forEach(
-                      function (entry) {
-
-                        if (entry.isIntersecting) {
-
-                          entry.target.classList.add(
-                            "cards-visible"
-                          );
-
-                        } else {
-
-                          entry.target.classList.remove(
-                            "cards-visible"
-                          );
-
-                        }
-
-                      }
-                    );
-
-                  },
-                  {
-                    threshold: 0.15,
-                    rootMargin:
-                      "0px 0px -70px 0px"
-                  }
-                );
 
               cardsObserver.observe(element);
 
@@ -1219,16 +1932,48 @@
 
         /*
          * Éléments simples :
-         * informations légales finales,
-         * bloc Soutenir, etc.
+         * SIREN / SIRET
+         * Soutenir MECV PARIS
          */
+
+        const elementObserver =
+          new IntersectionObserver(
+            function (entries) {
+
+              entries.forEach(
+                function (entry) {
+
+                  if (entry.isIntersecting) {
+
+                    entry.target.classList.add(
+                      "is-visible"
+                    );
+
+                  } else {
+
+                    entry.target.classList.remove(
+                      "is-visible"
+                    );
+
+                  }
+
+                }
+              );
+
+            },
+            {
+              threshold: 0.2,
+              rootMargin: "0px 0px -70px 0px"
+            }
+          );
+
 
         document
           .querySelectorAll(".scroll-element")
           .forEach(
             function (element) {
 
-              observer.observe(element);
+              elementObserver.observe(element);
 
             }
           );
