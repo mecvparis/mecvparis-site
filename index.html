@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -52,7 +51,6 @@
       max-width: 100%;
       display: block;
     }
-
 
 
     /* =====================================================
@@ -190,62 +188,36 @@
       padding-top: 130px;
       padding-bottom: 90px;
 
-      position: relative;
-
       background:
-        linear-gradient(
-          rgba(245, 239, 227, 0.16),
-          rgba(245, 239, 227, 0.16)
-        ),
-        url("Christvie.png") center center / cover no-repeat;
-
-      isolation: isolate;
-    }
-
-
-    #accueil::before {
-      content: "";
-
-      position: absolute;
-      inset: 0;
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255, 250, 241, 0.16),
-          rgba(245, 239, 227, 0.08),
-          rgba(23, 52, 93, 0.10)
+        radial-gradient(
+          circle at center,
+          #fffaf1 0%,
+          #f5efe3 55%,
+          #eee5d5 100%
         );
-
-      z-index: -1;
     }
 
 
     .hero-content {
-      width: 100%;
       max-width: 900px;
-
       margin: 0 auto;
+    }
 
-      padding: 55px 60px;
 
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255, 250, 241, 0.78),
-          rgba(255, 250, 241, 0.57)
-        );
+    .hero-logo {
+      display: flex;
+      justify-content: center;
 
-      border: 1px solid rgba(255, 255, 255, 0.55);
+      margin-bottom: 25px;
 
-      border-radius: 22px;
+      animation: heroLogo 1.5s ease both;
+    }
 
-      backdrop-filter: blur(13px);
-      -webkit-backdrop-filter: blur(13px);
 
-      box-shadow:
-        0 25px 70px rgba(23, 52, 93, 0.18),
-        inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    .hero-logo img {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
     }
 
 
@@ -956,61 +928,6 @@
     }
 
 
-    .social-links {
-      display: flex;
-
-      justify-content: center;
-      align-items: center;
-
-      gap: 14px;
-
-      margin: 22px 0 20px;
-    }
-
-
-    .social-links a {
-      width: 44px;
-      height: 44px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border: 1px solid rgba(216, 184, 106, 0.55);
-
-      border-radius: 50%;
-
-      color: #fffaf1;
-
-      background: rgba(255, 250, 241, 0.06);
-
-      transition:
-        transform 0.35s ease,
-        background 0.35s ease,
-        color 0.35s ease,
-        border-color 0.35s ease;
-    }
-
-
-    .social-links a:hover {
-      transform: translateY(-5px) scale(1.08);
-
-      background: #b89452;
-
-      color: #17345d;
-
-      border-color: #b89452;
-    }
-
-
-    .social-links svg {
-      width: 21px;
-      height: 21px;
-
-      fill: currentColor;
-    }
-
-
 
     /* =====================================================
        ANIMATIONS
@@ -1069,6 +986,21 @@
 
     .delay-3 {
       transition-delay: 0.54s;
+    }
+
+
+    @keyframes heroLogo {
+
+      from {
+        opacity: 0;
+        transform: scale(0.75);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+
     }
 
 
@@ -1150,11 +1082,12 @@
       .hero-content {
         width: 100%;
         max-width: 100%;
+      }
 
-        padding:
-          40px 24px;
 
-        border-radius: 18px;
+      .hero-logo img {
+        width: 115px;
+        height: 115px;
       }
 
 
@@ -1255,17 +1188,6 @@
       }
 
 
-      .social-links {
-        gap: 10px;
-      }
-
-
-      .social-links a {
-        width: 40px;
-        height: 40px;
-      }
-
-
       footer {
         padding:
           30px 20px;
@@ -1291,6 +1213,12 @@
       }
 
 
+      .hero-logo img {
+        width: 105px;
+        height: 105px;
+      }
+
+
       .section-title h2 {
         font-size: 34px;
       }
@@ -1303,7 +1231,6 @@
 
 
 <body>
-
 
 
   <!-- =====================================================
@@ -1361,6 +1288,16 @@
   <section id="accueil">
 
     <div class="hero-content">
+
+
+      <div class="hero-logo">
+
+        <img
+          src="logo-mecv.png"
+          alt="Logo MECV PARIS"
+        >
+
+      </div>
 
 
       <div class="hero-label">
@@ -1927,21 +1864,6 @@
 
 
           <p>
-
-            Email :
-
-            <a href="mailto:eglise@mecvparis.fr">
-
-              <strong>
-                eglise@mecvparis.fr
-              </strong>
-
-            </a>
-
-          </p>
-
-
-          <p>
             Mission Évangélique Colonne de la Vérité
           </p>
 
@@ -2012,123 +1934,9 @@
       "
     >
 
-
     <p>
       Mission Évangélique Colonne de la Vérité
     </p>
-
-
-    <!-- =================================================
-         RESEAUX SOCIAUX
-         ================================================= -->
-
-    <div class="social-links">
-
-
-      <!-- FACEBOOK -->
-
-      <a
-        href="https://www.facebook.com/Mecvparis/"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Facebook MECV Paris"
-        title="Facebook"
-      >
-
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path d="M14 8h3V4h-3c-3.31 0-5 1.69-5 5v3H6v4h3v8h4v-8h3.2l.8-4H13V9c0-.67.33-1 1-1z"/>
-        </svg>
-
-      </a>
-
-
-
-      <!-- YOUTUBE -->
-
-      <a
-        href="https://www.youtube.com/@MECVPARIS"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="YouTube MECV Paris"
-        title="YouTube"
-      >
-
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.6 15.8V8.2L16 12l-6.4 3.8z"/>
-        </svg>
-
-      </a>
-
-
-
-      <!-- INSTAGRAM -->
-
-      <a
-        href="https://www.instagram.com/mecvparis/"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Instagram MECV Paris"
-        title="Instagram"
-      >
-
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zM17.5 6.5a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/>
-        </svg>
-
-      </a>
-
-
-
-      <!-- TIKTOK -->
-
-      <a
-        href="https://www.tiktok.com/@mecvparis"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="TikTok MECV Paris"
-        title="TikTok"
-      >
-
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path d="M16.6 2c.4 2.3 1.7 3.8 4 4.1v3.2c-1.3-.1-2.6-.5-4-1.3v6.8a7.2 7.2 0 1 1-6.2-7.1v3.4a3.7 3.7 0 1 0 2.7 3.7V2h3.5z"/>
-        </svg>
-
-      </a>
-
-
-
-      <!-- EMAIL -->
-
-      <a
-        href="mailto:eglise@mecvparis.fr"
-        aria-label="Envoyer un email à MECV Paris"
-        title="Email"
-      >
-
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
-        </svg>
-
-      </a>
-
-
-    </div>
-
 
     <p>
       © 2026 MECV PARIS — Tous droits réservés.
@@ -2144,7 +1952,6 @@
 
   <script>
 
-
     window.addEventListener("load", function () {
 
       if ("scrollRestoration" in history) {
@@ -2158,7 +1965,6 @@
       });
 
     });
-
 
 
     const revealElements =
@@ -2203,7 +2009,6 @@
     });
 
 
-
     document.querySelectorAll(
       'a[href^="#"]'
     ).forEach(function (link) {
@@ -2212,7 +2017,6 @@
 
         const targetId =
           this.getAttribute("href");
-
 
         if (
           !targetId ||
@@ -2262,4 +2066,3 @@
 </body>
 
 </html>
-```
