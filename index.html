@@ -155,6 +155,100 @@
 
 
     /* =====================================================
+       LIEN DIRECT YOUTUBE
+       ===================================================== */
+
+    #live-nav {
+      display: none;
+    }
+
+
+    #live-nav.active {
+      display: list-item;
+    }
+
+
+    .live-link {
+      display: inline-flex !important;
+      align-items: center;
+      gap: 7px;
+
+      color: #b3261e !important;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size: 13px !important;
+      font-weight: 800 !important;
+
+      letter-spacing: 0.4px;
+
+      white-space: nowrap;
+
+      animation: livePulse 2s ease-in-out infinite;
+    }
+
+
+    .live-link::after {
+      background: #b3261e !important;
+    }
+
+
+    .live-dot {
+      width: 9px;
+      height: 9px;
+
+      display: inline-block;
+
+      background: #d62828;
+
+      border-radius: 50%;
+
+      box-shadow:
+        0 0 0 0 rgba(214, 40, 40, 0.55);
+
+      animation: liveDot 1.6s infinite;
+    }
+
+
+    @keyframes liveDot {
+
+      0% {
+        box-shadow:
+          0 0 0 0 rgba(214, 40, 40, 0.55);
+      }
+
+      70% {
+        box-shadow:
+          0 0 0 7px rgba(214, 40, 40, 0);
+      }
+
+      100% {
+        box-shadow:
+          0 0 0 0 rgba(214, 40, 40, 0);
+      }
+
+    }
+
+
+    @keyframes livePulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.72;
+      }
+
+    }
+
+
+
+    /* =====================================================
        SECTIONS
        ===================================================== */
 
@@ -1133,6 +1227,19 @@
       }
 
 
+      .live-link {
+        font-size: 9px !important;
+        letter-spacing: 0 !important;
+        gap: 5px;
+      }
+
+
+      .live-dot {
+        width: 7px;
+        height: 7px;
+      }
+
+
       section {
         padding:
           90px 20px;
@@ -1286,6 +1393,11 @@
       }
 
 
+      .live-link {
+        font-size: 8px !important;
+      }
+
+
       .hero-content h1 {
         font-size: 51px;
       }
@@ -1324,11 +1436,39 @@
 
     <ul class="nav-links">
 
+      <!-- =================================================
+           LIEN LIVE YOUTUBE
+           S'AFFICHE UNIQUEMENT PENDANT UN DIRECT
+           ================================================= -->
+
+      <li id="live-nav">
+
+        <a
+          id="live-link"
+          class="live-link"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Suivez-nous en direct sur YouTube"
+        >
+
+          <span class="live-dot"></span>
+
+          <span>
+            SUIVEZ-NOUS EN DIRECT
+          </span>
+
+        </a>
+
+      </li>
+
+
       <li>
         <a href="#vision">
           Vision
         </a>
       </li>
+
 
       <li>
         <a href="#informations-legales">
@@ -1336,11 +1476,13 @@
         </a>
       </li>
 
+
       <li>
         <a href="#contact">
           Contact
         </a>
       </li>
+
 
       <li>
         <a href="#soutenir">
@@ -2139,11 +2281,15 @@
 
 
   <!-- =====================================================
-       ANIMATIONS + RETOUR EN HAUT
+       ANIMATIONS + DETECTION YOUTUBE LIVE
        ===================================================== -->
 
   <script>
 
+
+    /* =====================================================
+       RETOUR EN HAUT AU CHARGEMENT
+       ===================================================== */
 
     window.addEventListener("load", function () {
 
@@ -2160,6 +2306,10 @@
     });
 
 
+
+    /* =====================================================
+       ANIMATIONS AU DEFILEMENT
+       ===================================================== */
 
     const revealElements =
       document.querySelectorAll(
@@ -2203,6 +2353,10 @@
     });
 
 
+
+    /* =====================================================
+       NAVIGATION SMOOTH SCROLL
+       ===================================================== */
 
     document.querySelectorAll(
       'a[href^="#"]'
@@ -2255,6 +2409,118 @@
       });
 
     });
+
+
+
+    /* =====================================================
+       DETECTION AUTOMATIQUE DU DIRECT YOUTUBE
+       ===================================================== */
+
+    const LIVE_API =
+      "https://mecv-youtube-live.mecvparis.workers.dev/";
+
+
+    const liveNav =
+      document.getElementById("live-nav");
+
+
+    const liveLink =
+      document.getElementById("live-link");
+
+
+    async function checkYouTubeLive() {
+
+      try {
+
+        const response =
+          await fetch(
+            LIVE_API,
+            {
+              method: "GET",
+              cache: "no-store"
+            }
+          );
+
+
+        if (!response.ok) {
+
+          liveNav.classList.remove("active");
+
+          liveLink.removeAttribute("href");
+
+          return;
+
+        }
+
+
+        const data =
+          await response.json();
+
+
+        if (
+          data.live === true &&
+          data.url
+        ) {
+
+          liveLink.href =
+            data.url;
+
+          liveNav.classList.add("active");
+
+          liveLink.setAttribute(
+            "aria-label",
+            "Suivez-nous en direct sur YouTube : " +
+            (data.title || "MECV Paris")
+          );
+
+          liveLink.setAttribute(
+            "title",
+            data.title || "MECV Paris en direct"
+          );
+
+        } else {
+
+          liveNav.classList.remove("active");
+
+          liveLink.removeAttribute("href");
+
+        }
+
+
+      } catch (error) {
+
+        console.error(
+          "Erreur de détection du live YouTube :",
+          error
+        );
+
+        liveNav.classList.remove("active");
+
+        liveLink.removeAttribute("href");
+
+      }
+
+    }
+
+
+
+    /* =====================================================
+       PREMIERE VERIFICATION
+       ===================================================== */
+
+    checkYouTubeLive();
+
+
+
+    /* =====================================================
+       VERIFICATION AUTOMATIQUE TOUTES LES 60 SECONDES
+       ===================================================== */
+
+    setInterval(
+      checkYouTubeLive,
+      60000
+    );
+
 
   </script>
 
