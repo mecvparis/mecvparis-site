@@ -113,6 +113,20 @@
       font: 16px/1.9 var(--sans);
     }
     .button-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 13px; }
+    .hero-scroll {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 42px; height: 42px; margin: 25px auto 0;
+      color: var(--gold-light); border: 1px solid rgba(216,184,106,.55);
+      border-radius: 50%; text-decoration: none;
+      animation: scrollArrow 1.6s ease-in-out infinite;
+      transition: background .25s ease, color .25s ease;
+    }
+    .hero-scroll:hover { background: var(--gold-light); color: var(--navy-deep); }
+    .hero-scroll svg { width: 19px; height: 19px; }
+    @keyframes scrollArrow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(9px); }
+    }
     .btn {
       min-height: 50px; padding: 15px 25px; display: inline-flex; align-items: center; justify-content: center;
       font: 700 12px var(--sans); letter-spacing: .07em; text-transform: uppercase;
@@ -310,7 +324,7 @@
         min-width: 0;
         margin: 0;
       }
-      .brand img { width: 52px; height: 52px; }
+      .brand img { width: 62px; height: 62px; }
       .brand-copy { display: none; }
       .menu-toggle {
         border: 1px solid rgba(255,255,255,.35);
@@ -400,6 +414,11 @@
           <a class="btn btn-gold" href="#apropos">Découvrir MECV</a>
           <a class="btn btn-outline-light" href="#enseignements">Explorer les enseignements</a>
         </div>
+        <a class="hero-scroll" href="#apropos" aria-label="Défiler vers le bas">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 4v15"></path><path d="m6 13 6 6 6-6"></path>
+          </svg>
+        </a>
       </div>
     </section>
 
