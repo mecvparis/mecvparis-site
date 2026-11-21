@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -700,21 +701,31 @@
     // Année automatique dans le pied de page.
     document.getElementById("currentYear").textContent = new Date().getFullYear();
 
-    // Détection du direct YouTube via le service déjà utilisé par MECV.
-    const LIVE_API = "https://mecv-youtube-live.mecvparis.workers.dev/";
+    // Détection du direct YouTube via le Worker MECV PARIS.
+    const LIVE_API = "https://mecv-youtube-live.mecvparis.workers.dev/status";
     const liveNav = document.getElementById("live-nav");
     const liveLink = document.getElementById("live-link");
 
     async function checkYouTubeLive() {
       try {
-        const response = await fetch(LIVE_API, { method: "GET", cache: "no-store" });
-        if (!response.ok) throw new Error("Service de direct indisponible");
+        const response = await fetch(LIVE_API, {
+          method: "GET",
+          cache: "no-store"
+        });
+
+        if (!response.ok) {
+          throw new Error("Service de direct indisponible");
+        }
+
         const data = await response.json();
 
         if (data.live === true && data.url) {
           liveLink.href = data.url;
           liveLink.title = data.title || "MECV Paris en direct";
-          liveLink.setAttribute("aria-label", "Suivez MECV Paris en direct sur YouTube");
+          liveLink.setAttribute(
+            "aria-label",
+            "Suivez MECV Paris en direct sur YouTube"
+          );
           liveNav.classList.add("active");
         } else {
           liveNav.classList.remove("active");
@@ -727,8 +738,11 @@
       }
     }
 
+    // Première vérification au chargement de la page.
     checkYouTubeLive();
-    window.setInterval(checkYouTubeLive, 60000);
+
+    // Vérification automatique toutes les 10 minutes.
+    window.setInterval(checkYouTubeLive, 600000);
   </script>
 </body>
 </html>
