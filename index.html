@@ -291,6 +291,64 @@
       .support-section { padding: 65px 0; }
       .support-panel { padding: 43px 23px; }
       .site-footer { padding-inline: 22px; }
+
+      /* MOBILE : en-tête épuré, logo centré et menu conservé */
+      .site-header, .site-header.scrolled {
+        height: 72px;
+        padding-inline: 16px;
+        justify-content: flex-end;
+        background: rgba(16,39,68,.98);
+        border-bottom: 0;
+        box-shadow: none;
+        backdrop-filter: blur(12px);
+      }
+      .brand {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        min-width: 0;
+        margin: 0;
+      }
+      .brand img { width: 52px; height: 52px; }
+      .brand-copy { display: none; }
+      .menu-toggle {
+        border: 1px solid rgba(255,255,255,.35);
+        color: #fffaf1;
+      }
+      .menu-toggle span { background: #fffaf1; }
+      .main-nav { background: #fffaf1; }
+
+      /* MOBILE : première vue presque entièrement bleu marine */
+      .hero {
+        min-height: 100svh;
+        height: 100svh;
+        padding: 112px 24px 42px;
+        background-image: linear-gradient(110deg,
+          rgba(12,31,54,.985) 0%,
+          rgba(23,52,93,.97) 52%,
+          rgba(12,31,54,.985) 100%),
+          url("Christvie.png");
+        background-position: center center;
+        background-size: cover;
+      }
+      .hero::after { inset: 82px 10px 10px; border-color: rgba(216,184,106,.28); }
+      .hero-content { position: relative; z-index: 1; }
+      .hero .eyebrow { font-size: 9px; letter-spacing: .16em; }
+      .hero h1 { font-size: clamp(43px, 12vw, 66px); }
+      .hero-description { max-width: 440px; font-size: 13px; line-height: 1.75; }
+      .button-row { gap: 10px; }
+      .btn { width: 100%; max-width: 300px; min-height: 47px; }
+
+      /* MOBILE : section Qui sommes-nous structurée sur le fond crème */
+      .intro-section { background: var(--cream); }
+      .intro-section .section-heading { margin-bottom: 30px; padding-bottom: 25px; border-bottom: 1px solid rgba(184,148,82,.55); }
+      .intro-section .section-heading .heading-line { margin-bottom: 18px; }
+      .intro-grid { gap: 25px; }
+      .intro-copy { padding-bottom: 24px; border-bottom: 1px solid rgba(184,148,82,.45); }
+      .intro-copy > .eyebrow { display: inline-block; padding-bottom: 9px; border-bottom: 2px solid var(--gold); }
+      .scripture { font-size: 14px; line-height: 1.85; padding: 20px 18px; overflow-wrap: anywhere; }
+      .scripture strong { display: block; margin-top: 10px; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
@@ -364,7 +422,7 @@
               MECV Paris œuvre à partager la prédication de l’Évangile, à transmettre les enseignements bibliques et à accompagner chacun dans sa connaissance de Dieu.
             </p>
             <div class="scripture">
-              « ... l’Église du Dieu vivant, la colonne et l’appui de la vérité. »
+              « Mais afin que tu saches, si je tarde, comment il faut se conduire dans la maison de Dieu, qui est l’Église du Dieu vivant, la colonne et l’appui de la vérité. »
               <strong>1 Timothée 3:15</strong>
             </div>
           </div>
